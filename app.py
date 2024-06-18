@@ -7,7 +7,8 @@ import requests
 import streamlit as st
 
 # Set the OpenAI API key from the environment variable
-client = openai.OpenAI(st.secrets["OPENAI_API_KEY"])
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = openai.OpenAI()
 
 # Streamlit title
 "# 021"
