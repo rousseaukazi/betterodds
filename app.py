@@ -3,6 +3,7 @@ import os
 import time
 import json
 import openai
+from openai import OpenAI
 import requests
 import streamlit as st
 
