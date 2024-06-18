@@ -8,6 +8,7 @@ from openai import OpenAI
 import streamlit as st
 
 # Set the OpenAI API key from the environment variable
+openai.api_key = "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"
 client = openai.OpenAI()
 
 # Streamlit title
