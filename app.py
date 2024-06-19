@@ -187,8 +187,8 @@ if idea:
     song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + idea + ". Just provide the title, nothing else."
     
     "## One Liner"
-    oneliner = get_prompts(idea)
-    ChatGPT(oneliner["OL"])
+    prompts = get_prompts(idea)
+    ChatGPT(prompts["OneLiner"])
 
     "## Domains"
     ChatGPT(domain_prompt)
