@@ -191,7 +191,7 @@ if idea:
     ChatGPT(prompts["OneLiner"])
     txt = st.text_area("OneLiner Prompt", prompts["OneLiner"])
 
-    if txt:
+    if st.button("Log"):
         st.write(len(txt))
 
     "## Domains"
@@ -210,38 +210,38 @@ if idea:
     "## Prototype"
     st.html(ChatGPTCode(proto_prompt))
 
-    "## Surprise"
-    title = ChatGPTNoStream(song_title_prompt).choices[0].message.content
-    lyrics = ChatGPTNoStream(song_prompt).choices[0].message.content
+    # "## Surprise"
+    # title = ChatGPTNoStream(song_title_prompt).choices[0].message.content
+    # lyrics = ChatGPTNoStream(song_prompt).choices[0].message.content
 
-    # Generate Song
+    # # Generate Song
 
-    latest_iteration = st.empty()
-    bar = st.progress(0)
+    # latest_iteration = st.empty()
+    # bar = st.progress(0)
     
-    music_generation_info = generate_music(suno_api_key, title, lyrics)
-    song_id = music_generation_info[0]["song_id"]
-    song_id = [song_id]
+    # music_generation_info = generate_music(suno_api_key, title, lyrics)
+    # song_id = music_generation_info[0]["song_id"]
+    # song_id = [song_id]
 
-    for i in range(100):
-        latest_iteration.text(f'Iteration {i+1}')
-        bar.progress(i + 1)
-        time.sleep(.5)
+    # for i in range(100):
+    #     latest_iteration.text(f'Iteration {i+1}')
+    #     bar.progress(i + 1)
+    #     time.sleep(.5)
 
-    generated_results = query_generated_results(suno_api_key, song_id)
+    # generated_results = query_generated_results(suno_api_key, song_id)
 
-    # Clear the placeholders
-    latest_iteration.empty()
-    bar.empty()
+    # # Clear the placeholders
+    # latest_iteration.empty()
+    # bar.empty()
 
-    "### ...and now we\'re done! Your very own marketing jingle 🎶"
-    st.audio(generated_results[0]["audio_url"])
-    st.write(title)
-    st.write(lyrics)
+    # "### ...and now we\'re done! Your very own marketing jingle 🎶"
+    # st.audio(generated_results[0]["audio_url"])
+    # st.write(title)
+    # st.write(lyrics)
 
-    "## Quota"
-    quota_info = check_remaining_quota(suno_api_key)
-    st.write(quota_info)
+    # "## Quota"
+    # quota_info = check_remaining_quota(suno_api_key)
+    # st.write(quota_info)
 
 
 #     # Initialize session state for component refresh control
