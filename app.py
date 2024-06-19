@@ -15,9 +15,19 @@ client = openai.OpenAI()
 # Streamlit title
 "# 021"
 
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Page 1", "Page 2"])
+
+if page == "Page 1":
+    import page1
+    page1.show()
+elif page == "Page 2":
+    import page2
+    page2.show()
+
 # Capturing the idea
-idea = st.text_input("What's your idea?")
-suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
+# idea = st.text_input("What's your idea?")
+# suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
 
 def check_remaining_quota(api_key):
     url = "https://api.sunoaiapi.com/api/v1/gateway/limit"
@@ -36,7 +46,6 @@ def check_remaining_quota(api_key):
             return {"error": data['msg']}
     else:
         return {"error": f"HTTP {response.status_code}"}
-
 def generate_music(api_key, title, prompt, mv="chirp-v3-5", continue_at=None, continue_clip_id=None):
     url = "https://api.sunoaiapi.com/api/v1/gateway/generate/music"
     headers = {
@@ -67,7 +76,6 @@ def generate_music(api_key, title, prompt, mv="chirp-v3-5", continue_at=None, co
             return {"error": result['msg']}
     else:
         return {"error": f"HTTP {response.status_code}"}
-
 def query_generated_results(api_key, song_ids):
     url = f"https://api.sunoaiapi.com/api/v1/gateway/query?ids={','.join(song_ids)}"
     headers = {
@@ -93,9 +101,6 @@ def query_generated_results(api_key, song_ids):
             return {"error": "Unexpected response format"}
     else:
         return {"error": f"HTTP {response.status_code}"}
-
-
-# OpenAI Request
 def ChatGPTNoStream(prompt): 
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -118,7 +123,6 @@ def ChatGPTNoStream(prompt):
             presence_penalty=0
     )
     return response
-
 def ChatGPT(prompt): 
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -141,7 +145,6 @@ def ChatGPT(prompt):
             presence_penalty=0
     )
     return st.write(response)
-
 def ChatGPTCode(prompt):
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -163,7 +166,6 @@ def ChatGPTCode(prompt):
         presence_penalty=0
         )
     return response.choices[0].message.content[3:-3]
-
 def ImageGen(prompt):
     response = client.images.generate(
         model="dall-e-3",
@@ -174,126 +176,72 @@ def ImageGen(prompt):
     )
     image_url = response.data[0].url
     return image_url
+# if idea: 
+#     # Prompts 
+#     ol_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else."
+#     domain_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else."
+#     ms_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with detailed yet concise bullet points detailing the market sizing. Use real numbers and figures. Just provide me with the market sizing and nothing else."
+#     income_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with a few bullet points detailing the conservative to aggressive income projections based on the business model and various timelines. Just provide the income projections, reasoning behind it, and the unit economics and nothing else."
+#     proto_prompt = "I'm starting a company. My idea: " + idea + ". Provide a code block for the HTML and CSS for a modern looking website (with a beautiful gradient header) that has a clear marketing header, get started button, footer, and black border around the entire site so it's visible on a whitebackground. Your response should start and end with '''. Nothing else but just the code block. If you provide anything, it will break my product."
+#     logo_prompt = "I'm starting a company. This is my idea " + idea + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo."
+#     song_prompt = "Create 4 stanzas of song lyrics for a pop, marketing song about my business idea. Here's the idea: " + idea + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
+#     song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + idea + ". Just provide the title, nothing else."
 
-# Define a variable in session state to control component refresh
-if 'refresh_component' not in st.session_state:
-    st.session_state.refresh_component = False
-
-# Function to toggle the refresh state
-def toggle_refresh():
-    st.session_state.refresh_component = not st.session_state.refresh_component
-    st.experimental_rerun()  # Trigger a rerun of the script
-
-# Non-refreshing component
-st.write("This component does not refresh.")
-
-# Button to trigger refresh of specific component
-if st.button("Refresh Specific Component"):
-    toggle_refresh()
-
-# Refreshing component
-if st.session_state.refresh_component:
-    st.write("This component has been refreshed.")
-else:
-    st.write("This component has not been refreshed yet.")
-
-# Other components that should not be refreshed
-st.write("This component stays the same.")
-
-if idea: 
-    # Prompts 
-    ol_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else."
-    domain_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else."
-    ms_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with detailed yet concise bullet points detailing the market sizing. Use real numbers and figures. Just provide me with the market sizing and nothing else."
-    income_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with a few bullet points detailing the conservative to aggressive income projections based on the business model and various timelines. Just provide the income projections, reasoning behind it, and the unit economics and nothing else."
-    proto_prompt = "I'm starting a company. My idea: " + idea + ". Provide a code block for the HTML and CSS for a modern looking website (with a beautiful gradient header) that has a clear marketing header, get started button, footer, and black border around the entire site so it's visible on a whitebackground. Your response should start and end with '''. Nothing else but just the code block. If you provide anything, it will break my product."
-    logo_prompt = "I'm starting a company. This is my idea " + idea + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo."
-    song_prompt = "Create 4 stanzas of song lyrics for a pop, marketing song about my business idea. Here's the idea: " + idea + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
-    song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + idea + ". Just provide the title, nothing else."
-
-    ## Refresh 
+#     ## Refresh 
     
-    "## One Liner"
-    prompts = get_prompts(idea)
-    ChatGPT(prompts["OneLiner"])
-    txt = st.text_area("OneLiner Prompt", prompts["OneLiner"])
+#     "## One Liner"
+#     prompts = get_prompts(idea)
+#     ChatGPT(prompts["OneLiner"])
+#     txt = st.text_area("OneLiner Prompt", prompts["OneLiner"])
 
-    if st.button("Log"):
-        st.write(len(txt))
+#     if st.button("Log"):
+#         st.write(len(txt))
 
-    "## Domains"
-    ChatGPT(domain_prompt)
+#     "## Domains"
+#     ChatGPT(domain_prompt)
 
-    # "## Market Sizing"
-    # # ChatGPT(ms_prompt)
+#     # "## Market Sizing"
+#     # # ChatGPT(ms_prompt)
 
-    # "## Income Projections"
-    # # ChatGPT(income_prompt)
+#     # "## Income Projections"
+#     # # ChatGPT(income_prompt)
 
-    # "## Logo"
-    # # image_url = str(ImageGen(logo_prompt))
-    # # st.image(image_url)
+#     # "## Logo"
+#     # # image_url = str(ImageGen(logo_prompt))
+#     # # st.image(image_url)
     
-    "## Prototype"
-    st.html(ChatGPTCode(proto_prompt))
+#     "## Prototype"
+#     st.html(ChatGPTCode(proto_prompt))
 
-    # "## Surprise"
-    # title = ChatGPTNoStream(song_title_prompt).choices[0].message.content
-    # lyrics = ChatGPTNoStream(song_prompt).choices[0].message.content
+#     # "## Surprise"
+#     # title = ChatGPTNoStream(song_title_prompt).choices[0].message.content
+#     # lyrics = ChatGPTNoStream(song_prompt).choices[0].message.content
 
-    # # Generate Song
+#     # # Generate Song
 
-    # latest_iteration = st.empty()
-    # bar = st.progress(0)
+#     # latest_iteration = st.empty()
+#     # bar = st.progress(0)
     
-    # music_generation_info = generate_music(suno_api_key, title, lyrics)
-    # song_id = music_generation_info[0]["song_id"]
-    # song_id = [song_id]
+#     # music_generation_info = generate_music(suno_api_key, title, lyrics)
+#     # song_id = music_generation_info[0]["song_id"]
+#     # song_id = [song_id]
 
-    # for i in range(100):
-    #     latest_iteration.text(f'Iteration {i+1}')
-    #     bar.progress(i + 1)
-    #     time.sleep(.5)
+#     # for i in range(100):
+#     #     latest_iteration.text(f'Iteration {i+1}')
+#     #     bar.progress(i + 1)
+#     #     time.sleep(.5)
 
-    # generated_results = query_generated_results(suno_api_key, song_id)
+#     # generated_results = query_generated_results(suno_api_key, song_id)
 
-    # # Clear the placeholders
-    # latest_iteration.empty()
-    # bar.empty()
+#     # # Clear the placeholders
+#     # latest_iteration.empty()
+#     # bar.empty()
 
-    # "### ...and now we\'re done! Your very own marketing jingle 🎶"
-    # st.audio(generated_results[0]["audio_url"])
-    # st.write(title)
-    # st.write(lyrics)
+#     # "### ...and now we\'re done! Your very own marketing jingle 🎶"
+#     # st.audio(generated_results[0]["audio_url"])
+#     # st.write(title)
+#     # st.write(lyrics)
 
-    # "## Quota"
-    # quota_info = check_remaining_quota(suno_api_key)
-    # st.write(quota_info)
-
-
-#     # Initialize session state for component refresh control
-# if 'refresh_component' not in st.session_state:
-#     st.session_state.refresh_component = False
-
-# def refresh_component():
-#     st.session_state.refresh_component = not st.session_state.refresh_component
-
-# st.title("Streamlit Selective Refresh Example")
-
-# # Non-refreshing component
-# st.write("This component does not refresh.")
-
-# # Button to trigger refresh of specific component
-# if st.button("Refresh Specific Component"):
-#     refresh_component()
-
-# # Refreshing component
-# placeholder = st.empty()
-
-# # Use the session state to control the refresh
-# if st.session_state.refresh_component:
-#     with placeholder.container():
-#         st.write("This component has been refreshed.")
-# else:
-#     with placeholder.container():
-#         st.write("This component has not been refreshed yet.")
+#     # "## Quota"
+#     # quota_info = check_remaining_quota(suno_api_key)
+#     # st.write(quota_info)
