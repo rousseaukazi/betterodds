@@ -175,19 +175,27 @@ def ImageGen(prompt):
     image_url = response.data[0].url
     return image_url
 
-# Placeholder for refreshing component
-placeholder = st.empty()
+# Define a variable in session state to control component refresh
+if 'refresh_component' not in st.session_state:
+    st.session_state.refresh_component = False
+
+# Function to toggle the refresh state
+def toggle_refresh():
+    st.session_state.refresh_component = not st.session_state.refresh_component
+    st.experimental_rerun()  # Trigger a rerun of the script
 
 # Non-refreshing component
 st.write("This component does not refresh.")
 
 # Button to trigger refresh of specific component
 if st.button("Refresh Specific Component"):
-    with placeholder.container():
-        st.write("This component has been refreshed.")
+    toggle_refresh()
+
+# Refreshing component
+if st.session_state.refresh_component:
+    st.write("This component has been refreshed.")
 else:
-    with placeholder.container():
-        st.write("This component has not been refreshed yet.")
+    st.write("This component has not been refreshed yet.")
 
 # Other components that should not be refreshed
 st.write("This component stays the same.")
