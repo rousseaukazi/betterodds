@@ -194,7 +194,6 @@ if idea:
     lyrics = ChatGPTNoStream(song_prompt).choices[0].message.content
 
     # Generate Song
-    
     music_generation_info = generate_music(suno_api_key, title, lyrics)
     song_id = music_generation_info[0]["song_id"]
     song_id = [song_id]
@@ -244,6 +243,6 @@ if idea:
     st.write(title)
     st.write(lyrics)
 
-    "## Quota"
-    quota_info = check_remaining_quota(suno_api_key)
-    st.write(quota_info)
+    # "## Quota"
+    # quota_info = check_remaining_quota(suno_api_key)
+    # st.write(quota_info)
