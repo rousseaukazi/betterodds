@@ -189,6 +189,7 @@ if idea:
     "## One Liner"
     prompts = get_prompts(idea)
     ChatGPT(prompts["OneLiner"])
+    txt = st.text_area("OneLiner Prompt", prompts["OneLiner"])
 
     "## Domains"
     ChatGPT(domain_prompt)
