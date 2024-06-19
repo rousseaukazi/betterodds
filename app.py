@@ -213,10 +213,10 @@ if idea:
     "## Market Sizing"
     ChatGPT(ms_prompt)
 
-    "## Income Projections"
-    ChatGPT(income_prompt)
+    # "## Income Projections"
+    # ChatGPT(income_prompt)
 
-    "## Logo"
+    # "## Logo"
     # image_url = str(ImageGen(logo_prompt))
     # st.image(image_url)
     
@@ -228,9 +228,9 @@ if idea:
     latest_iteration = st.empty()
     bar = st.progress(0)
 
-    for i in range(10):
+    for i in range(100):
         latest_iteration.text(f'Making magic {i+1}')
-        bar.progress(i + 1)
+        bar.progress(i + 10)
         time.sleep(.5)
 
     generated_results = query_generated_results(suno_api_key, song_id)
