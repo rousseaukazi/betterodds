@@ -185,6 +185,35 @@ if idea:
     logo_prompt = "I'm starting a company. This is my idea " + idea + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo."
     song_prompt = "Create 4 stanzas of song lyrics for a pop, marketing song about my business idea. Here's the idea: " + idea + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
     song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + idea + ". Just provide the title, nothing else."
+
+    ## Refresh 
+
+        # Initialize session state for component refresh control
+if 'refresh_component' not in st.session_state:
+    st.session_state.refresh_component = False
+
+def refresh_component():
+    st.session_state.refresh_component = not st.session_state.refresh_component
+
+st.title("Streamlit Selective Refresh Example")
+
+# Non-refreshing component
+st.write("This component does not refresh.")
+
+# Button to trigger refresh of specific component
+if st.button("Refresh Specific Component"):
+    refresh_component()
+
+# Refreshing component
+placeholder = st.empty()
+
+# Use the session state to control the refresh
+if st.session_state.refresh_component:
+    with placeholder.container():
+        st.write("This component has been refreshed.")
+else:
+    with placeholder.container():
+        st.write("This component has not been refreshed yet.")
     
     "## One Liner"
     prompts = get_prompts(idea)
