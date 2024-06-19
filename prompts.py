@@ -1,7 +1,7 @@
 
 def get_prompts(var):
     return {
-        "OL": f"I'm starting a company. This is my idea " + {var} + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else."
+        "OL": f"I'm starting a company. This is my idea " + var + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else."
     }
 
 
