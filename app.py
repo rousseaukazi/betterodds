@@ -202,10 +202,10 @@ if idea:
     "## One Liner"
     prompts = get_prompts(idea)
     ChatGPT(prompts["OneLiner"])
-    txt = st.text_area("OneLiner Prompt", prompts["OneLiner"])
+    # txt = st.text_area("OneLiner Prompt", prompts["OneLiner"])
 
-    if st.button("Log"):
-        st.write(len(txt))
+    # if st.button("Log"):
+    #     st.write(len(txt))
 
     "## Domains"
     ChatGPT(domain_prompt)
@@ -231,7 +231,7 @@ if idea:
     for i in range(100):
         latest_iteration.text(f'Making magic {i+1}')
         bar.progress(i + 10)
-        time.sleep(.01)
+        time.sleep(.1)
 
     generated_results = query_generated_results(suno_api_key, song_id)
 
