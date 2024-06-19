@@ -25,7 +25,7 @@ client = openai.OpenAI()
 #     import page2
 #     page2.show()
 
-Capturing the idea
+## Capturing the idea
 idea = st.text_input("What's your idea?")
 suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
 
