@@ -16,7 +16,7 @@ client = openai.OpenAI()
 
 # Capturing the idea
 idea = st.text_input("What's your idea?")
-api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
+suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
 
 def check_remaining_quota(api_key):
     url = "https://api.sunoaiapi.com/api/v1/gateway/limit"
@@ -174,33 +174,6 @@ def ImageGen(prompt):
     image_url = response.data[0].url
     return image_url
 
-# Initialize session state for component refresh control
-if 'refresh_component' not in st.session_state:
-    st.session_state.refresh_component = False
-
-def refresh_component():
-    st.session_state.refresh_component = not st.session_state.refresh_component
-
-st.title("Streamlit Selective Refresh Example")
-
-# Non-refreshing component
-st.write("This component does not refresh.")
-
-# Button to trigger refresh of specific component
-if st.button("Refresh Specific Component"):
-    refresh_component()
-
-# Refreshing component
-placeholder = st.empty()
-
-# Use the session state to control the refresh
-if st.session_state.refresh_component:
-    with placeholder.container():
-        st.write("This component has been refreshed.")
-else:
-    with placeholder.container():
-        st.write("This component has not been refreshed yet.")
-
 if idea: 
     # Prompts 
     ol_prompt = "I'm starting a company. This is my idea " + idea + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else."
@@ -240,7 +213,7 @@ if idea:
     latest_iteration = st.empty()
     bar = st.progress(0)
     
-    music_generation_info = generate_music(api_key, title, lyrics)
+    music_generation_info = generate_music(suno_api_key, title, lyrics)
     song_id = music_generation_info[0]["song_id"]
     song_id = [song_id]
 
@@ -249,7 +222,7 @@ if idea:
         bar.progress(i + 1)
         time.sleep(.5)
 
-    generated_results = query_generated_results(api_key, song_id)
+    generated_results = query_generated_results(suno_api_key, song_id)
 
     # Clear the placeholders
     latest_iteration.empty()
@@ -261,5 +234,33 @@ if idea:
     st.write(lyrics)
 
     "## Quota"
-    quota_info = check_remaining_quota(api_key)
+    quota_info = check_remaining_quota(suno_api_key)
     st.write(quota_info)
+
+
+#     # Initialize session state for component refresh control
+# if 'refresh_component' not in st.session_state:
+#     st.session_state.refresh_component = False
+
+# def refresh_component():
+#     st.session_state.refresh_component = not st.session_state.refresh_component
+
+# st.title("Streamlit Selective Refresh Example")
+
+# # Non-refreshing component
+# st.write("This component does not refresh.")
+
+# # Button to trigger refresh of specific component
+# if st.button("Refresh Specific Component"):
+#     refresh_component()
+
+# # Refreshing component
+# placeholder = st.empty()
+
+# # Use the session state to control the refresh
+# if st.session_state.refresh_component:
+#     with placeholder.container():
+#         st.write("This component has been refreshed.")
+# else:
+#     with placeholder.container():
+#         st.write("This component has not been refreshed yet.")
