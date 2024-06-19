@@ -3,9 +3,10 @@ import os
 import time
 import json
 import openai
-from openai import OpenAI
 import requests
 import streamlit as st
+from openai import OpenAI
+from prompts import get_prompts
 
 # Set the OpenAI API key from the environment variable
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -186,7 +187,7 @@ if idea:
     song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + idea + ". Just provide the title, nothing else."
     
     "## One Liner"
-    ChatGPT(ol_prompt)
+    ChatGPT(get_prompts["OL"])
 
     "## Domains"
     ChatGPT(domain_prompt)
