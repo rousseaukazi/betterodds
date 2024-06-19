@@ -231,7 +231,7 @@ if idea:
     for i in range(100):
         latest_iteration.text(f'Making magic {i+1}')
         bar.progress(i + 10)
-        time.sleep(.5)
+        time.sleep(.01)
 
     generated_results = query_generated_results(suno_api_key, song_id)
 
