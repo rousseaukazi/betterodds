@@ -78,19 +78,13 @@ def OneLiners():
     # JUST IDEA 
     if 'idea' in st.session_state and 'ol' not in st.session_state:
         "There is just an idea and no OL."
-        submit = st.button("Submit", type="primary")
-        if submit:
-            "i made it here"
+        if st.button("Submit", type="primary"):
             st.session_state['ol'] = "hey"
-            "hey"
-            st.rerun()
     if 'idea' in st.session_state and 'ol' in st.session_state:
         "There is both an idea and OL."
-        submit_ol = st.button("Submit", type="primary")
-        if submit_ol:
+        if st.button("Submit", type="primary"):
             st.session_state['ol'] = "hey you"
             "hey you"
-            st.rerun()
 
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
     #     text_value = oneliner.text_area("Idea", st.session_state['idea'])
