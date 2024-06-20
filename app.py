@@ -77,7 +77,7 @@ def OneLiners():
     prompt = st.text_area("prompt",st.session_state['idea'])
     result = ChatGPT(prompt)
 
-    if st.button("submit"):
+    if st.button("submit",type="primary"):
         st.session_state['idea'] = prompt
     
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
