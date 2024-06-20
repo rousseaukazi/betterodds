@@ -256,7 +256,7 @@ def Logos():
     st.title("Logos")
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
-            st.session_state['logo_prompt'] = '''For this business idea[[''' + st.session_state['idea'] + ''']], generate a single [[NOUN]] that best represents the business idea. Please create a simple, friendly "pixar style" [[NOUN]] emoji. Put it on a squircle background so it looks like an app icon. Just return the art. I have other workstreams for adding text. '''
+            st.session_state['logo_prompt'] = " For this business idea[["+st.session_state['idea']+", what's the single object that best represents the idea?  Draw a minimalistic version of that object in black on a plain white background using the continuous line drawing method."
         with st.form(key='logo_form'):
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
             submit_button = st.form_submit_button(label='Submit')
