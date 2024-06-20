@@ -76,7 +76,8 @@ def OneLiners():
     oneliner = st.empty()
     if 'idea' in st.session_state and 'ol' not in st.session_state:
         text_value = oneliner.text_area("Idea", st.session_state['idea'])
-        if text_value:
+        submit = st.button("Reset", type="primary")
+        if submit:
             oneliner.empty()
             text_value
     else:
