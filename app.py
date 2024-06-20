@@ -138,31 +138,11 @@ def Home():
         st.session_state['idea'] = idea
         # Create the DataFrame for unit economics
         # Set the price per unit
-        price_per_hat = 25  # Example price per hat in dollars
+        st.code(ChatGPT('''Below is an idea that I want to start. Given the idea, please reason an appropriate price for every unit I sell or service I offer. Once the price is set, respond with just the code for a simple pd.DataFrame in streamlit where the X Axis is the number of units and Y axis is revenue.
 
-        # Create a list for the number of units sold
-        units_sold = list(range(1, 101))  # From 1 to 100 units
+        Idea: ''' + st.session_state['idea'] + '''
 
-        # Calculate revenue for each unit sold
-        revenue = [units * price_per_hat for units in units_sold]
-
-        # Create a DataFrame
-        df = pd.DataFrame({'Units Sold': units_sold, 'Revenue': revenue})
-
-        # Display DataFrame in Streamlit
-        st.write(df)
-
-        # Plot the data
-        plt.figure(figsize=(10, 6))
-        plt.plot(df['Units Sold'], df['Revenue'], marker='o')
-        plt.title('Revenue vs Units Sold')
-        plt.xlabel('Units Sold')
-        plt.ylabel('Revenue ($)')
-        plt.grid(True)
-        plt.show()
-
-        # Display the plot in Streamlit
-        st.pyplot(plt)
+        Once again, just respond with the relevant code snippet and nothing else for just streamlit and pd.'''))
     
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
