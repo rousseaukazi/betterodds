@@ -80,6 +80,7 @@ def OneLiners():
         "There is just an idea and no OL."
         submit = st.button("Submit", type="primary")
         if submit:
+            "i made it here"
             st.session_state['ol'] = "hey"
             "hey"
             st.rerun()
