@@ -248,7 +248,7 @@ def Logos():
             if st.button("Submit", type="primary"):
                 st.session_state['logo_prompt'] = logo_prompt
                 st.session_state['logo_response'] = image_generation(logo_prompt)
-                # st.image(st.session_state['logo_response'])
+                st.image(st.session_state['logo_response'])
         if 'logo_response' in st.session_state:
             st.image(st.session_state['logo_response'])
     else:
