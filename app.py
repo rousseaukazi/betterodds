@@ -76,6 +76,8 @@ def OneLiners():
     
     if 'idea' in st.session_state and 'ol' not in st.session_state:
         st.write("original idea: " + st.session_state['idea'])
+    else:
+        st.write("no idea")
 
     # # JUST IDEA 
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
