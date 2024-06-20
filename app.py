@@ -121,6 +121,15 @@ def Home():
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
+        response = client.images.generate(
+        model="dall-e-3",
+        prompt="create a minimalistic logo for this business idea: " + idea,
+        size="1024x1024",
+        quality="standard",
+        n=1,
+        )
+        image_url = response.data[0].url
+        st.image(image_url)
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
