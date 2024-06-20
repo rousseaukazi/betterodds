@@ -82,7 +82,6 @@ def OneLiners():
             del st.session_state['OneLiners']
             st.session_state['OneLiners'] = ChatGPTNoStream(text_value).choices[0].message.content
             oneliner.empty()
-            text_value.empty()
             st.write(st.session_state['OneLiners'])
             # st.experimental_rerun()
             # st.session_state['idea'] = ol_txt
@@ -90,9 +89,9 @@ def OneLiners():
         prompt_variable = st.session_state['idea']
         prompts = get_prompts(prompt_variable) 
         st.session_state['ol_prompt'] = prompts['OneLiner']
+        ol_txt = st.text_area("Prompt",st.session_state['ol_prompt'])
         st.session_state['OneLiners'] = ChatGPTNoStream(st.session_state['ol_prompt']).choices[0].message.content
         st.write(st.session_state['OneLiners'])
-        ol_txt = st.text_area("Prompt",st.session_state['ol_prompt'])
     else:
         st.write("No idea submitted yet.")
 
