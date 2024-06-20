@@ -15,23 +15,28 @@ client = openai.OpenAI()
 # Streamlit title
 "# 021"
 
-def ChatGPT(prompt):
+def ChatGPT(prompt): 
     response = client.chat.completions.create(
         model="gpt-4o",
-        stream=False,
+        stream=True,
         messages=[
             {
-                "role": "user",
-                "content": prompt
+            "role": "user",
+            "content": [
+                {
+                "type": "text",
+                "text": prompt
+                }
+            ]
             }
         ],
-        temperature=1,
-        max_tokens=4096,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
+            temperature=1,
+            max_tokens=4096,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
     )
-    return response.choices[0].message['content']
+    return st.write(response)
 
 # Define the pages
 def Home():
