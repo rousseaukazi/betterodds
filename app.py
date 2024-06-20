@@ -64,49 +64,44 @@ def ChatGPTNoStream(prompt):
 
 # Define the pages
 def Home():
-    # st.title("Home")
-    # idea = st.text_input("Enter your idea:")
-    # if idea:
-    #     st.session_state['idea'] = idea
-    # if 'idea' in st.session_state:
-    #     st.write(st.session_state['idea'])
-
-    if "value" not in st.session_state:
-        st.session_state.value = "Title"
-
-    ##### Option using st.rerun #####
-    st.header(st.session_state.value)
-
-    if st.button("Foo"):
-        st.session_state.value = "Foo"
-        st.experimental_rerun()
+    st.title("Home")
+    idea = st.text_input("Enter your idea:")
+    if idea:
+        st.session_state['idea'] = idea
+    if 'idea' in st.session_state:
+        st.write(st.session_state['idea'])
 
 def OneLiners():
     st.title("One Liners")
-    if 'OneLiners' in st.session_state:
-        oneliner = st.empty()
-        oneliner.text(st.session_state['OneLiners'])
-        text_value = oneliner.text_area("Prompt", st.session_state['ol_prompt'])     
-        if oneliner.text_area:
-            # st.write(text_value)
-            del st.session_state['OneLiners']
-            st.session_state['OneLiners'] = ChatGPTNoStream(text_value).choices[0].message.content
-            st.session_state['ol_prompt'] = text_value
-            oneliner.empty()
-            # st.experimental_rerun()
-            st.text_area("Prompt", text_value)
-            st.write(st.session_state['OneLiners'])
-            # st.experimental_rerun()
-            # st.session_state['idea'] = ol_txt
-    elif 'idea' in st.session_state:
-        prompt_variable = st.session_state['idea']
-        prompts = get_prompts(prompt_variable) 
-        st.session_state['ol_prompt'] = prompts['OneLiner']
-        ol_txt = st.text_area("Prompt",st.session_state['ol_prompt'])
-        st.session_state['OneLiners'] = ChatGPTNoStream(st.session_state['ol_prompt']).choices[0].message.content
-        st.write(st.session_state['OneLiners'])
+    if st.session_state['idea']:
+        "There's an idea."
     else:
-        st.write("No idea submitted yet.")
+        "There's no idea."
+
+    # if 'OneLiners' in st.session_state:
+    #     oneliner = st.empty()
+    #     oneliner.text(st.session_state['OneLiners'])
+    #     text_value = oneliner.text_area("Prompt", st.session_state['ol_prompt'])     
+    #     if oneliner.text_area:
+    #         # st.write(text_value)
+    #         del st.session_state['OneLiners']
+    #         st.session_state['OneLiners'] = ChatGPTNoStream(text_value).choices[0].message.content
+    #         st.session_state['ol_prompt'] = text_value
+    #         oneliner.empty()
+    #         # st.experimental_rerun()
+    #         st.text_area("Prompt", text_value)
+    #         st.write(st.session_state['OneLiners'])
+    #         # st.experimental_rerun()
+    #         # st.session_state['idea'] = ol_txt
+    # elif 'idea' in st.session_state:
+    #     prompt_variable = st.session_state['idea']
+    #     prompts = get_prompts(prompt_variable) 
+    #     st.session_state['ol_prompt'] = prompts['OneLiner']
+    #     ol_txt = st.text_area("Prompt",st.session_state['ol_prompt'])
+    #     st.session_state['OneLiners'] = ChatGPTNoStream(st.session_state['ol_prompt']).choices[0].message.content
+    #     st.write(st.session_state['OneLiners'])
+    # else:
+    #     st.write("No idea submitted yet.")
 
 def Domains():
     st.title("Page 2 - Italics Idea")
