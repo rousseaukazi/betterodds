@@ -127,7 +127,6 @@ def image_generation(prompt_arg):
         image_url = response.data[0].url
         return image_url
 
-
 # PAGE FUNCTIONS 
 
 def Home():
@@ -255,8 +254,6 @@ def Logos():
     else:
         "Please enter an idea on the Input page."
     
-
-
 # NAVIGATION
 pages = {
     "Home": Home,
