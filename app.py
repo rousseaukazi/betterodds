@@ -82,7 +82,7 @@ def OneLiners():
         ol_prompt = st.text_area("Prompt", st.session_state['ol_prompt'])
         ChatGPT(ol_prompt)
         if st.button("submit",type="primary") or ol_prompt:
-            st.session_state['ol_prompt'] = prompt
+            st.session_state['ol_prompt'] = ol_prompt
     else:
         "Please enter an idea on the Input page."
 
