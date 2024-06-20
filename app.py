@@ -24,14 +24,14 @@ def home():
     if 'idea' in st.session_state:
         st.write(st.session_state['idea'])
 
-def page1():
+def OneLiner():
     st.title("Page 1 - Bold Idea")
     if 'idea' in st.session_state:
         st.write(f"**{st.session_state['idea']}**")
     else:
         st.write("No idea submitted yet.")
 
-def page2():
+def Domains():
     st.title("Page 2 - Italics Idea")
     if 'idea' in st.session_state:
         st.write(f"*{st.session_state['idea']}*")
@@ -45,10 +45,10 @@ page = st.sidebar.radio("Go to", ["Home", "Page 1", "Page 2"])
 # Navigate to the selected page
 if page == "Home":
     home()
-elif page == "Page 1":
-    page1()
-elif page == "Page 2":
-    page2()
+elif page == "One Liner":
+    OneLiner()
+elif page == "Domains":
+    Domains()
 
 # ## Capturing the idea
 # idea = st.text_input("What's your idea?")
