@@ -78,6 +78,7 @@ def OneLiners():
         txtOne = st.text_area("prompt",st.session_state['idea'],key="txtOne")
         if st.button("One", type="primary", key="one"):
             st.session_state['ol'] = txtOne
+            st.write(st.session_state['ol'] + " " + st.session_state['ol'])
             # st.rerun()
     elif 'idea' in st.session_state and 'ol' in st.session_state:
         txtTwo = st.text_area("prompt",st.session_state['ol'],key="txtTwo")
