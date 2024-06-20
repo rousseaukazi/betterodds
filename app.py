@@ -63,11 +63,12 @@ def ChatGPTNoStream(prompt):
 
 
 # Define the pages
-def home():
+def Home():
     st.title("Home")
     idea = st.text_input("Enter your idea:")
-    if st.button("Submit") or idea:
+    if idea:
         st.session_state['idea'] = idea
+        OneLiners()
     if 'idea' in st.session_state:
         st.write(st.session_state['idea'])
 
@@ -96,7 +97,7 @@ page = st.sidebar.radio("Go to", ["Input", "One Liners", "Domains"])
 
 # Navigate to the selected page
 if page == "Input":
-    home()
+    Home()
 elif page == "One Liners":
     OneLiners()
 elif page == "Domains":
