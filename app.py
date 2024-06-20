@@ -249,7 +249,7 @@ def Logos():
                 st.session_state['logo_prompt'] = logo_prompt
                 st.session_state['logo_response'] = image_generation(logo_prompt)
                 st.image(st.session_state['logo_response'])
-        if 'ol_response' in st.session_state:
+        if 'logo_response' in st.session_state:
             st.image(st.session_state['logo_response'])
     else:
         "Please enter an idea on the Input page."
