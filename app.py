@@ -82,6 +82,7 @@ def OneLiners():
             del st.session_state['OneLiners']
             st.session_state['OneLiners'] = ChatGPTNoStream(text_value).choices[0].message.content
             oneliner.empty()
+            text_value.empty()
             st.write(st.session_state['OneLiners'])
             # st.experimental_rerun()
             # st.session_state['idea'] = ol_txt
