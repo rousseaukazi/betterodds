@@ -256,8 +256,7 @@ def Logos():
     st.title("Logos")
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
-            st.session_state['logo_prompt'] = "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo."
-
+            st.session_state['logo_prompt'] = '''For this ''' + st.session_state['idea'] + ''', generate a single [[NOUN]] that best represents the business idea. Please create a simple, friendly "pixar style" [[NOUN]] emoji. Put it on a squircle background so it looks like an app icon. Just return the art. I have other workstreams for adding text. '''
         with st.form(key='logo_form'):
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
             submit_button = st.form_submit_button(label='Submit')
@@ -270,43 +269,6 @@ def Logos():
             st.image(st.session_state['logo_response'])
     else:
         st.write("Please enter an idea on the Input page.")
-
-# def Logos():
-#     st.title("Logos")
-#     if 'idea' in st.session_state:
-#         if 'logo_prompt' not in st.session_state:
-#             st.session_state['logo_prompt'] = "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo."
-
-#         logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'], key="logo")
-
-#         if st.button("Submit", type="primary"):
-#             st.session_state['logo_prompt'] = logo_prompt  # Update the prompt in the session state
-#             st.session_state['logo_response'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
-        
-#         if 'logo_response' in st.session_state:
-#             st.image(st.session_state['logo_response'])
-#     else:
-#         st.write("Please enter an idea on the Input page.")
-
-# def Logos():
-#     st.title("Logos")
-#     if 'idea' in st.session_state:
-#         if 'logo_prompt' not in st.session_state:
-#             prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo.")
-#             if st.button("Submit", type="primary"):
-#                 st.session_state['logo_prompt'] = prompt
-#                 st.session_state['logo_response'] = image_generation(prompt)
-#                 st.image(st.session_state['logo_response'])
-#         else:
-#             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'], key="oneliner")
-#             if st.button("Submit", type="primary"):
-#                 st.session_state['logo_prompt'] = logo_prompt
-#                 st.session_state['logo_response'] = image_generation(logo_prompt)
-#                 st.image(st.session_state['logo_response'])
-#         if 'logo_response' in st.session_state:
-#             st.image(st.session_state['logo_response'])
-#     else:
-#         "Please enter an idea on the Input page."
     
 # NAVIGATION
 pages = {
