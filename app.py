@@ -163,7 +163,7 @@ def CompanyName():
                 st.session_state['cn_prompt'] = prompt
                 st.session_state['cn_response'] = ChatGPT(prompt)
         else:
-            cn_prompt = st.text_area("Prompt", st.session_state['cn_prompt'], key="oneliner")
+            cn_prompt = st.text_area("Prompt", st.session_state['cn_prompt'], key="businessname")
             if st.button("Submit", type="primary"):
                 st.session_state['cn_prompt'] = cn_prompt
                 st.session_state['cn_response'] = ChatGPT(cn_prompt)
@@ -210,16 +210,20 @@ def Domains():
     st.title("Domains")
     if 'idea' in st.session_state:
         if 'domain_prompt' not in st.session_state:
-            domain_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.", key="domain")
-            if st.button("Submit", type="primary"):
-                st.session_state['domain_prompt'] = domain_prompt_default
-                st.session_state['domain_response'] = ChatGPT(domain_prompt_default)
-        else:
-            domain_prompt_edit = st.text_area("Prompt", st.session_state['domain_prompt'], key="domain")
+            dom_prompt = '''I'm starting a business.
+                    This is my idea: [[''' + st.session_state['idea'] + ''']].
+                    I need to come up with a domain for my idea.
+                    Please provide me with 3 different domains that would be suitable for my business name.
+                    Below is a template for what / how I want you to output the domains.
+                    Note: "*domain-name*" represents the part I want you to replace with the corresponding domain name. For your response, just provide me with the domain name (*domain-name*) and a concise and very short 1-sentence description (try to keep this under 10 words) for why that domain is suitable (*description*).
+                    1. *domain-name* – *description*
+                    2. *domain-name* – *description*
+                    3. *domain-name* – *description*
+                    Context: Before you suggest options, look for existing companies that are similar and use their domains relative to the business name as a reference point for your suggestions. Strongly weigh the domains of the most successful businesses within the respective field / industry to generate your suggestions.'''
+            domain_prompt_edit = st.text_area("Prompt", dom_prompt, key="domain")
             if st.button("Submit", type="primary"):
                 st.session_state['domain_prompt'] = domain_prompt_edit
                 st.session_state['domain_response'] = ChatGPT(domain_prompt_edit)
-
         if 'domain_response' in st.session_state:
             st.write(st.session_state['domain_response'])
     else:
