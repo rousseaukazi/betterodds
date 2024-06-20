@@ -143,9 +143,11 @@ def Home():
 
         Just produce the json snippet and nothing else''')
 
-        st.write(json_string)
+        # st.write(json_string)
 
-        # json_object = json.loads(json_string)
+        json_object = json.loads(json_string)
+
+        st.write(json_object)
 
         # print(json_object)
 
