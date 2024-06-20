@@ -8,6 +8,7 @@ import pandas as pd
 import streamlit as st
 from openai import OpenAI
 from prompts import get_prompts
+import matplotlib.pyplot as plt
 
 # API_KEYS
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -136,17 +137,27 @@ def Home():
     if idea:
         st.session_state['idea'] = idea
         # Create the DataFrame for unit economics
+        # Create the DataFrame for unit economics
         unit_economics_df = pd.DataFrame({
             "Number of Units": [10, 20, 30, 40, 50],
+            "Average Price per Unit (CAD)": [150, 145, 140, 135, 130],
             "Revenue (CAD)": [1500, 2900, 4200, 5400, 6500]
         })
 
         # Display the DataFrame using Streamlit
         st.dataframe(unit_economics_df)
 
-        st.bar_chart(unit_economics_df)
-        st.line_chart(unit_economics_df)
-        st.area_chart(unit_economics_df)
+        # Create the plot
+        fig, ax = plt.subplots()
+        ax.plot(unit_economics_df["Number of Units"], unit_economics_df["Revenue (CAD)"], marker='o', linestyle='-')
+
+        # Set the labels and title
+        ax.set_xlabel("Number of Units")
+        ax.set_ylabel("Revenue (CAD)")
+        ax.set_title("Revenue vs. Number of Units")
+
+        # Display the plot using Streamlit
+        st.pyplot(fig)
     
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
