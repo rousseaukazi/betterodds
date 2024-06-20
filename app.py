@@ -18,7 +18,7 @@ client = openai.OpenAI()
 def ChatGPT(prompt): 
     response = client.chat.completions.create(
         model="gpt-4o",
-        stream=True,
+        stream=False,
         messages=[
             {
             "role": "user",
@@ -36,7 +36,7 @@ def ChatGPT(prompt):
             frequency_penalty=0,
             presence_penalty=0
     )
-    return st.write(response)
+    return response.choices[0].message.content
 
 # Define the pages
 def Home():
