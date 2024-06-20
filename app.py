@@ -15,6 +15,53 @@ client = openai.OpenAI()
 # Streamlit title
 "# 021"
 
+def ChatGPT(prompt): 
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        stream=True,
+        messages=[
+            {
+            "role": "user",
+            "content": [
+                {
+                "type": "text",
+                "text": prompt
+                }
+            ]
+            }
+        ],
+            temperature=1,
+            max_tokens=4096,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+    )
+    return st.write(response)
+
+def ChatGPTNoStream(prompt): 
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        stream=False,
+        messages=[
+            {
+            "role": "user",
+            "content": [
+                {
+                "type": "text",
+                "text": prompt
+                }
+            ]
+            }
+        ],
+            temperature=1,
+            max_tokens=4096,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+    )
+    return response
+
+
 # Define the pages
 def home():
     st.title("Home")
@@ -24,10 +71,14 @@ def home():
     if 'idea' in st.session_state:
         st.write(st.session_state['idea'])
 
-def OneLiner():
-    st.title("Page 1 - Bold Idea")
-    if 'idea' in st.session_state:
-        st.write(f"**{st.session_state['idea']}**")
+def OneLiners():
+    st.title("One Liners")
+    if 'OneLiners' in st.session_state:
+        st.write(st.session_state['OneLiners'])
+    elif 'idea' in st.session_state:
+        ol_prompt = st.session_state['idea']
+        st.session_state['OneLiners'] = ChatGPTNoStream(ol_prompt)
+        st.write(st.session_state['OneLiners'])
     else:
         st.write("No idea submitted yet.")
 
@@ -46,19 +97,9 @@ page = st.sidebar.selectbox("Go To", ["Input", "One Liners", "Domains"])
 if page == "Input":
     home()
 elif page == "One Liners":
-    OneLiner()
+    OneLiners()
 elif page == "Domains":
     Domains()
-
-# page = st.sidebar.radio("Go to", ["Home", "One Liner", "Domains"])
-
-# # Navigate to the selected page
-# if page == "Home":
-#     home()
-# elif page == "One Liner":
-#     OneLiner()
-# elif page == "Domains":
-#     Domains()
 
 # ## Capturing the idea
 # idea = st.text_input("What's your idea?")
