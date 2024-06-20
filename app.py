@@ -73,21 +73,29 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
+
+    def display(arg):
+        st.write(arg)
     
-    if 'idea' in st.session_state and 'ol' not in st.session_state:
-        txtOne = st.text_area("prompt",st.session_state['idea'],key="txtOne")
-        if st.button("One", type="primary", key="one"):
-            st.session_state['ol'] = txtOne
-            st.write(st.session_state['ol'] + " " + "this is the first one")
-            # st.rerun()
-    elif 'idea' in st.session_state and 'ol' in st.session_state:
-        txtTwo = st.text_area("prompt",st.session_state['ol'],key="txtTwo")
-        if st.button("Two", type="secondary",key="Two"):
-            st.session_state['ol'] = txtTwo
-            st.write(st.session_state['ol'] + " " + "this is the second one")
-            # st.rerun()
-    else:
-        st.write("no idea")
+    text_value = st.text_area("prompt",st.session_state['idea'])
+
+    if st.button("submit"):
+        display(text_value)
+    
+    # if 'idea' in st.session_state and 'ol' not in st.session_state:
+    #     txtOne = st.text_area("prompt",st.session_state['idea'],key="txtOne")
+    #     if st.button("One", type="primary", key="one"):
+    #         st.session_state['ol'] = txtOne
+    #         # st.rerun()
+    # elif 'idea' in st.session_state and 'ol' in st.session_state:
+    #     st.write(st.session_state['ol'] + " " + "this is the first one")
+    #     txtTwo = st.text_area("prompt",st.session_state['ol'],key="txtTwo")
+    #     if st.button("Two", type="secondary",key="Two"):
+    #         st.session_state['ol'] = txtTwo
+    #         st.write(st.session_state['ol'] + " " + "this is the second one")
+    #         # st.rerun()
+    # else:
+    #     st.write("no idea")
 
     # # JUST IDEA 
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
