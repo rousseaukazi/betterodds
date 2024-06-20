@@ -138,7 +138,6 @@ def Home():
         # Create the DataFrame for unit economics
         unit_economics_df = pd.DataFrame({
             "Number of Units": [10, 20, 30, 40, 50],
-            "Average Price per Unit (CAD)": [150, 145, 140, 135, 130],
             "Revenue (CAD)": [1500, 2900, 4200, 5400, 6500]
         })
 
@@ -148,7 +147,7 @@ def Home():
         st.bar_chart(unit_economics_df)
         st.line_chart(unit_economics_df)
         st.area_chart(unit_economics_df)
-        st.plotly_chart(unit_economics_df)
+    
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
