@@ -135,23 +135,6 @@ def Home():
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
-        # Create the DataFrame for unit economics
-        # Set the price per unit
-        json_string = ChatGPT('''for the following idea, return two filled python arrays in a JSON format where the first key is "number of units" and numbers you believe are reasonable for the idea and the second key is "revenue" which should correspond with the releveant number of units.
-
-        idea: '''+st.session_state['idea']+'''
-
-        Just produce the json snippet and nothing else''')
-
-        st.write(json_string)
-
-        # json_object = json.loads(json_string)
-
-        # st.write(json_object)
-
-        # print(json_object)
-
-    
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
