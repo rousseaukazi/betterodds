@@ -80,6 +80,7 @@ def OneLiners():
         "One."
         if oneliner.button("Submit", type="primary", key="default"):
             st.session_state['ol'] = "hey"
+            oneliner.empty()
     if 'idea' in st.session_state and 'ol' in st.session_state:
         "Two."
         if st.button("Submit", type="primary", key="edit"):
