@@ -76,9 +76,10 @@ def OneLiners():
     if 'OneLiners' in st.session_state:
         oneliner = st.empty()
         oneliner.text(st.session_state['OneLiners'])
-        oneliner.text_area("Prompt", st.session_state['ol_prompt'])
+        text_value = oneliner.text_area("Prompt", st.session_state['ol_prompt'])
+         
         if oneliner.text_area:
-            st.write(oneliner.text_area)
+            st.write(text_value)
             # st.session_state['idea'] = str(oneliner.text_area)
             # del st.session_state['OneLiners']
             # oneliner.empty()
