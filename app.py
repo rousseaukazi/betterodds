@@ -311,7 +311,7 @@ def Logos():
 # NAVIGATION
 pages = {
     "Home": Home,
-    "Company Name":, CompanyName,
+    "Company Name": CompanyName,
     "One Liners": OneLiners,
     "Domains": Domains,
     "Market Sizing": MarketSizing,
