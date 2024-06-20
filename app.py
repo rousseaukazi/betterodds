@@ -73,18 +73,17 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
-    st.rerun()
     oneliner = st.empty()
     if 'idea' in st.session_state and 'ol_prompt' not in st.session_state:
         prompt = oneliner.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.", key="oneliner")
-        ChatGPT(prompt)
-        if st.button("submit",type="primary") or prompt:
+        if st.button("Submit", type="primary"):
             st.session_state['ol_prompt'] = prompt
+            ChatGPT(prompt)
     elif 'idea' in st.session_state and 'ol_prompt' in st.session_state:
         ol_prompt = oneliner.text_area("Prompt", st.session_state['ol_prompt'])
-        ChatGPT(ol_prompt)
-        if st.button("submit",type="primary") or ol_prompt:
+        if st.button("Submit", type="primary"):
             st.session_state['ol_prompt'] = ol_prompt
+            ChatGPT(ol_prompt)
     else:
         "Please enter an idea on the Input page."
 
@@ -93,16 +92,135 @@ def Domains():
     domain = st.empty()
     if 'idea' in st.session_state and 'domain_prompt' not in st.session_state:
         domain_prompt_default = domain.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.", key="domain")
-        ChatGPT(domain_prompt_default)
-        if st.button("submit",type="primary") or domain_prompt_default:
+        if st.button("Submit", type="primary"):
             st.session_state['domain_prompt'] = domain_prompt_default
+            ChatGPT(domain_prompt_default)
     elif 'idea' in st.session_state and 'domain_prompt' in st.session_state:
         domain_prompt_edit = domain.text_area("Prompt", st.session_state['domain_prompt'])
-        ChatGPT(domain_prompt_edit)
-        if st.button("submit",type="primary") or domain_prompt_edit:
-            st.session_state['ol_prompt'] = domain_prompt_edit
+        if st.button("Submit", type="primary"):
+            st.session_state['domain_prompt'] = domain_prompt_edit
+            ChatGPT(domain_prompt_edit)
     else:
         "Please enter an idea on the Input page."
+
+# Navigation
+pages = {
+    "Home": Home,
+    "One Liners": OneLiners,
+    "Domains": Domains
+}
+
+st.sidebar.title("Navigation")
+selection = st.sidebar.radio("Go to", list(pages.keys()))
+
+page = pages[selection]
+page()
+
+
+# import io
+# import os
+# import time
+# import json
+# import openai
+# import requests
+# import streamlit as st
+# from openai import OpenAI
+# from prompts import get_prompts
+
+# # Set the OpenAI API key from the environment variable
+# openai.api_key = st.secrets["OPENAI_API_KEY"]
+# client = openai.OpenAI()
+
+# # Streamlit title
+# "# 021"
+
+# def ChatGPT(prompt): 
+#     response = client.chat.completions.create(
+#         model="gpt-4o",
+#         stream=True,
+#         messages=[
+#             {
+#             "role": "user",
+#             "content": [
+#                 {
+#                 "type": "text",
+#                 "text": prompt
+#                 }
+#             ]
+#             }
+#         ],
+#             temperature=1,
+#             max_tokens=4096,
+#             top_p=1,
+#             frequency_penalty=0,
+#             presence_penalty=0
+#     )
+#     return st.write(response)
+
+# def ChatGPTNoStream(prompt): 
+#     response = client.chat.completions.create(
+#         model="gpt-4o",
+#         stream=False,
+#         messages=[
+#             {
+#             "role": "user",
+#             "content": [
+#                 {
+#                 "type": "text",
+#                 "text": prompt
+#                 }
+#             ]
+#             }
+#         ],
+#             temperature=1,
+#             max_tokens=4096,
+#             top_p=1,
+#             frequency_penalty=0,
+#             presence_penalty=0
+#     )
+#     return response
+
+
+# # Define the pages
+# def Home():
+#     st.title("Home")
+#     idea = st.text_input("Enter your idea:")
+#     if idea:
+#         st.session_state['idea'] = idea
+#     if 'idea' in st.session_state:
+#         st.write(st.session_state['idea'])
+
+# def OneLiners():
+#     st.title("One Liners")
+#     oneliner = st.empty()
+#     if 'idea' in st.session_state and 'ol_prompt' not in st.session_state:
+#         prompt = oneliner.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.", key="oneliner")
+#         ChatGPT(prompt)
+#         if st.button("submit",type="primary") or prompt:
+#             st.session_state['ol_prompt'] = prompt
+#     elif 'idea' in st.session_state and 'ol_prompt' in st.session_state:
+#         ol_prompt = oneliner.text_area("Prompt", st.session_state['ol_prompt'])
+#         ChatGPT(ol_prompt)
+#         if st.button("submit",type="primary") or ol_prompt:
+#             st.session_state['ol_prompt'] = ol_prompt
+#     else:
+#         "Please enter an idea on the Input page."
+
+# def Domains():
+#     st.title("Domains")
+#     domain = st.empty()
+#     if 'idea' in st.session_state and 'domain_prompt' not in st.session_state:
+#         domain_prompt_default = domain.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.", key="domain")
+#         ChatGPT(domain_prompt_default)
+#         if st.button("submit",type="primary") or domain_prompt_default:
+#             st.session_state['domain_prompt'] = domain_prompt_default
+#     elif 'idea' in st.session_state and 'domain_prompt' in st.session_state:
+#         domain_prompt_edit = domain.text_area("Prompt", st.session_state['domain_prompt'])
+#         ChatGPT(domain_prompt_edit)
+#         if st.button("submit",type="primary") or domain_prompt_edit:
+#             st.session_state['ol_prompt'] = domain_prompt_edit
+#     else:
+#         "Please enter an idea on the Input page."
     
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
     #     txtOne = st.text_area("prompt",st.session_state['idea'],key="txtOne")
@@ -169,16 +287,16 @@ def Domains():
     #     st.write("No idea submitted yet.")
 
 # Create a sidebar for navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Input", "One Liners", "Domains"])
+# st.sidebar.title("Navigation")
+# page = st.sidebar.radio("Go to", ["Input", "One Liners", "Domains"])
 
-# Navigate to the selected page
-if page == "Input":
-    Home()
-elif page == "One Liners":
-    OneLiners()
-elif page == "Domains":
-    Domains()
+# # Navigate to the selected page
+# if page == "Input":
+#     Home()
+# elif page == "One Liners":
+#     OneLiners()
+# elif page == "Domains":
+#     Domains()
 
 # ## Capturing the idea
 # idea = st.text_input("What's your idea?")
