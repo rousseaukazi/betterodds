@@ -91,8 +91,8 @@ def Domains():
         st.write("No idea submitted yet.")
 
 # Create a sidebar for navigation
-st.sidebar.title("Component Library")
-page = st.sidebar.selectbox("Go To", ["Input", "One Liners", "Domains"])
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Input", "One Liners", "Domains"])
 
 # Navigate to the selected page
 if page == "Input":
