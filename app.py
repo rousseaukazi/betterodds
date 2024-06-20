@@ -61,6 +61,7 @@ def OneLiners():
         
         else:
             ol_prompt = st.text_area("Prompt", st.session_state['ol_prompt'], key="oneliner")
+            st.write(st.session_state['ol_response'])
             if st.button("Remix", type="primary"):
                 st.session_state['ol_prompt'] = ol_prompt
                 st.session_state['ol_response'] = ChatGPT(ol_prompt)
