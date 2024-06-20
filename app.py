@@ -142,7 +142,23 @@ def CompanyName():
     st.title("Company Name")
     if 'idea' in st.session_state:
         if 'cn_prompt' not in st.session_state:
-            prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different Company Names. Just provide me with the Company Names and nothing else.", key="oneliner")
+            company_name_prompt = '''I'm starting a business.
+                This is my idea: ''' + st.session_state['idea'] + '''
+                Please provide me with 3 different business name options (1. Direct and clear, 2. Approachable and friendly: 3. Sticky and memorable (if possible try to use alliteration)).
+                Below is a template for what / how I want you to output the business names.
+                Note: “*business-name*” represents the part I want you to replace with the corresponding business name. For your response, just provide me with the business name and nothing else.
+                1. Direct: *business-name*
+                2. Approachable: *business-name*
+                3. Sticky: *business-name*
+                Context: Before you suggest options, look for existing companies that are similar and use their names as a reference point. Strongly weigh the attributes of the business name of the most successful businesses within my field to generate your suggestions.
+                Additional criteria for business name:
+                1. It should be pithy and clearly describe what the business does to a layman
+                2. They should be intriguing but not cringy
+                2. It should be memorable (very important)
+                3. It should ideally describe how we're a solution to a problem without the need for additional explanation
+                4. It should inspire confidence and make you want to trust and pay for the service / product
+                5. Whenever possible try to use alliteration to make it catchy, but don’t sacrifice accuracy and clarity for it for alliteration.'''
+            prompt = st.text_area("Prompt", company_name_prompt, key="oneliner")
             if st.button("Submit", type="primary"):
                 st.session_state['cn_prompt'] = prompt
                 st.session_state['cn_response'] = ChatGPT(prompt)
@@ -161,21 +177,21 @@ def OneLiners():
     if 'idea' in st.session_state:
         if 'ol_prompt' not in st.session_state:
             one_liner_prompt = '''I'm starting a business.
-                This is my idea: ''' + st.session_state['idea'] + '''
-                Please provide me with 3 different business name options (1. Direct and clear, 2. Approachable and friendly: 3. Sticky and memorable (if possible try to use alliteration)).
-                Below is a template for what / how I want you to output the business names.
-                Note: “*business-name*” represents the part I want you to replace with the corresponding business name. For your response, just provide me with the business name and nothing else.
-                1. Direct: *business-name*
-                2. Approachable: *business-name*
-                3. Sticky: *business-name*
-                Context: Before you suggest options, look for existing companies that are similar and use their names as a reference point. Strongly weigh the attributes of the business name of the most successful businesses within my field to generate your suggestions.
-                Additional criteria for business name:
-                1. It should be pithy and clearly describe what the business does to a layman
-                2. They should be intriguing but not cringy
-                2. It should be memorable (very important)
-                3. It should ideally describe how we're a solution to a problem without the need for additional explanation
-                4. It should inspire confidence and make you want to trust and pay for the service / product
-                5. Whenever possible try to use alliteration to make it catchy, but don’t sacrifice accuracy and clarity for it for alliteration.'''
+                This is my idea:[[]]''' + st.session_state['idea'] + ''']]
+                Please provide me with 3 different one-liners (1. Direct and clear, 2. Approachable and friendly: 3. Sticky and memorable (if possible try to use alliteration)) to be used as a public facing company slogan that described my business.
+                Below is a template for what / how I want you to output the one-liners.
+                Note: "*insert respective one-liner*" represents the part I want you to replace with the corresponding one liners. For your response, just provide me with the one-liners and nothing else.
+                1. Direct: *insert respective one-liner*
+                2. Approachable: *insert respective one-liner*
+                3. Sticky: *insert respective one-liner*
+                Context: Before you suggest options, look for existing companies that are similar and use their one liners as a reference point for your suggestions. Strongly weigh the attributes of the one liners of the most successful businesses within my field to generate your suggestions.
+                Additional criteria for one-liners:
+                1. They should be pithy and clearly describe what the business does to a layman
+                2. They should be intriguing but not cringy or fluffy
+                2. It should be memorable
+                3. They should clearly describe how we're a solution to a problem
+                4. They should inspire confidence and make you want to trust and pay for the service / product
+                5. Whenever possible try to use alliteration to make it catchy, but don’t sacrifice accuracy and clarity for it for alliteration'''
             prompt = st.text_area("Prompt", one_liner_prompt, key="oneliner")
             if st.button("Submit", type="primary"):
                 st.session_state['ol_prompt'] = prompt
