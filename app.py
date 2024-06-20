@@ -114,6 +114,19 @@ def query_generated_results(api_key, song_ids):
             return {"error": "Unexpected response format"}
     else:
         return {"error": f"HTTP {response.status_code}"}
+
+def image_generation(prompt_arg,n_arg, size_arg):
+        response = client.images.generate(
+        model="dall-e-3",
+        prompt=prompt_arg,
+        size=size_arg,
+        quality="standard",
+        n=n_arg,
+        )
+        image_url = response.data[0].url
+        return image_url
+
+
 # PAGE FUNCTIONS 
 
 def Home():
@@ -121,15 +134,6 @@ def Home():
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
-        response = client.images.generate(
-        model="dall-e-3",
-        prompt="create a minimalistic logo for this business idea: " + idea,
-        size="1024x1024",
-        quality="standard",
-        n=1,
-        )
-        image_url = response.data[0].url
-        st.image(image_url)
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
@@ -230,13 +234,34 @@ def Jingle():
     else:
         st.write("Please enter an idea on the Input page.")
 
+def Logos():
+    st.title("One Liners")
+    if 'idea' in st.session_state:
+        if 'logo_prompt' not in st.session_state:
+            prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo.")
+            if st.button("Submit", type="primary"):
+                st.session_state['logo_prompt'] = prompt
+                st.session_state['logo_response'] = image_generation(prompt, 1, "1024x1024")
+        else:
+            logo_prompt = st.text_area("Prompt", st.session_state['ol_prompt'], key="oneliner")
+            if st.button("Submit", type="primary"):
+                st.session_state['logo_prompt'] = logo_prompt
+                st.session_state['logo_response'] = image_generation(logo_prompt, 1, "1024x1024")
+        if 'ol_response' in st.session_state:
+            st.image(st.session_state['logo_response'])
+    else:
+        "Please enter an idea on the Input page."
+    
+
+
 # NAVIGATION
 pages = {
     "Home": Home,
     "One Liners": OneLiners,
     "Domains": Domains,
     "Market Sizing": MarketSizing,
-    "Jingle": Jingle
+    "Jingle": Jingle,
+    "Logos": Logos
 }
 
 st.sidebar.title("Navigation")
