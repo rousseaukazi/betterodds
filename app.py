@@ -68,14 +68,13 @@ def Home():
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
-        st.session_state['ol'] = idea
     if 'idea' in st.session_state:
         st.write(st.session_state['idea'])
 
 def OneLiners():
     st.title("One Liners")
     oneliner = st.empty()
-    if 'idea' in st.session_state and 'ol' in st.session_state:
+    if 'idea' in st.session_state and 'ol' not in st.session_state:
         oneliner.text(st.session_state['idea'])
     else:
         "There's no idea."
