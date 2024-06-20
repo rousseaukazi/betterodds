@@ -80,7 +80,7 @@ def OneLiners():
         if oneliner.text_area:
             st.session_state['idea'] = oneliner.text_area
             oneliner.empty()
-            OneLiners()
+            st.experimental_rerun()
             # st.session_state['idea'] = ol_txt
     elif 'idea' in st.session_state:
         prompt_variable = st.session_state['idea']
