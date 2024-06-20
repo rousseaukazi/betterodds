@@ -79,8 +79,8 @@ def OneLiners():
         if st.button("submit",type="primary"):
             st.session_state['ol_prompt'] = prompt
     elif 'idea' in st.session_state and 'ol_prompt' in st.session_state:
-        prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['ol_prompt'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.")
-        ChatGPT(prompt)
+        ol_prompt = st.text_area("Prompt", st.session_state['ol_prompt'])
+        ChatGPT(ol_prompt)
         if st.button("submit",type="primary"):
             st.session_state['ol_prompt'] = prompt
     else:
