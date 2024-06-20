@@ -19,9 +19,8 @@ client = openai.OpenAI()
 def home():
     st.title("Home")
     idea = st.text_input("Enter your idea:")
-    if idea:
+    if st.button("Submit") or idea:
         st.write("Current idea: " + idea)
-    if st.button("Submit"):
         st.session_state['idea'] = idea
 
 def page1():
