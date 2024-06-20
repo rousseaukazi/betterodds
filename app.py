@@ -243,7 +243,7 @@ def Logos():
                 st.session_state['logo_prompt'] = prompt
                 st.session_state['logo_response'] = image_generation(prompt, 1, "1024x1024")
         else:
-            logo_prompt = st.text_area("Prompt", st.session_state['ol_prompt'], key="oneliner")
+            logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'], key="oneliner")
             if st.button("Submit", type="primary"):
                 st.session_state['logo_prompt'] = logo_prompt
                 st.session_state['logo_response'] = image_generation(logo_prompt, 1, "1024x1024")
