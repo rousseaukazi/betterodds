@@ -74,7 +74,7 @@ def Home():
 def OneLiners():
     st.title("One Liners")
     if 'idea' in st.session_state and 'ol_prompt' not in st.session_state:
-        prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.")
+        prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.", key="oneliner")
         ChatGPT(prompt)
         if st.button("submit",type="primary") or prompt:
             st.session_state['ol_prompt'] = prompt
@@ -89,7 +89,7 @@ def OneLiners():
 def Domains():
     st.title("Domains")
     if 'idea' in st.session_state and 'domain_prompt' not in st.session_state:
-        domain_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.")
+        domain_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.", key="domain")
         ChatGPT(domain_prompt_default)
         if st.button("submit",type="primary") or domain_prompt_default:
             st.session_state['domain_prompt'] = domain_prompt_default
