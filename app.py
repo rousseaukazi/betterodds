@@ -15,16 +15,6 @@ client = openai.OpenAI()
 # Streamlit title
 "# 021"
 
-# st.sidebar.title("Navigation")
-# page = st.sidebar.radio("Go to", ["Page 1", "Page 2"])
-
-# if page == "Page 1":
-#     import page1
-#     page1.show()
-# elif page == "Page 2":
-#     import page2
-#     page2.show()
-
 ## Capturing the idea
 idea = st.text_input("What's your idea?")
 suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
