@@ -40,7 +40,7 @@ def Domains():
 
 # Create a sidebar for navigation
 st.sidebar.title("Component Library")
-page = st.sidebar.selectbox(["Input", "One Liners", "Domains"])
+page = st.sidebar.selectbox("Go To", ["Input", "One Liners", "Domains"])
 
 # Navigate to the selected page
 if page == "Input":
