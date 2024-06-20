@@ -137,11 +137,16 @@ def Home():
         st.session_state['idea'] = idea
         # Create the DataFrame for unit economics
         # Set the price per unit
-        exec(ChatGPT('''Below is an idea that I want to start. Given the idea, please reason an appropriate price for every unit I sell or service I offer. Once the price is set, respond with just the code for a simple pd.DataFrame in streamlit where the X Axis is the number of units and Y axis is revenue.
+        json_string = ChatGPT('''for the following idea, return two python arrays in a JSON format where the first key is "number of units" and the second key is "revenue".
 
-        Idea: ''' + st.session_state['idea'] + '''
+        idea: '''+st.session_state['idea']+'''
 
-        Once again, just respond with the relevant code snippet and nothing else for just streamlit and pd (no matlab).'''))
+        Just produce the json snippet and nothing else''')
+
+        json_object = json.loads(json_string)
+
+        print(json_object)
+
     
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
