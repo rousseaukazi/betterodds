@@ -77,10 +77,11 @@ def OneLiners():
     def display(arg):
         st.write(arg)
     
-    text_value = st.text_area("prompt",st.session_state['idea'])
+    prompt = st.text_area("prompt",st.session_state['idea'])
+    result = st.write(len(prompt))
 
     if st.button("submit"):
-        display(text_value)
+        st.session_state['idea'] = prompt
     
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
     #     txtOne = st.text_area("prompt",st.session_state['idea'],key="txtOne")
