@@ -14,7 +14,7 @@ client = openai.OpenAI()
 suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
 
 # Streamlit title
-"# 021"
+"# 👌 ✌️ 🤞"
 
 # FUNCTIONS 
 def ChatGPT(prompt): 
