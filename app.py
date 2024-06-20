@@ -22,6 +22,7 @@ def home():
     if st.button("Submit") or idea:
         st.write("Current idea: " + idea)
         st.session_state['idea'] = idea
+        st.write(st.session_state['idea'])
 
 def page1():
     st.title("Page 1 - Bold Idea")
