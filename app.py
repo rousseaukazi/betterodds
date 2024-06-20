@@ -73,7 +73,7 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
-    if 'idea' in st.session_state:
+    if 'idea' in st.session_state and 'ol' in st.session_state:
         "There's an idea."
     else:
         "There's no idea."
