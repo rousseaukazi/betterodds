@@ -78,7 +78,7 @@ def OneLiners():
     # JUST IDEA 
     if 'idea' in st.session_state and 'ol' not in st.session_state:
         "One."
-        if st.button("Submit", type="primary", key="default"):
+        if oneliner.button("Submit", type="primary", key="default"):
             st.session_state['ol'] = "hey"
     if 'idea' in st.session_state and 'ol' in st.session_state:
         "Two."
