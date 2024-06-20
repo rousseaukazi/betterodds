@@ -97,7 +97,7 @@ def MarketSizing():
             ms_prompt_edit = st.text_area("Prompt", st.session_state['ms_prompt'], key="domain")
             if st.button("Submit", type="primary"):
                 st.session_state['ms_prompt'] = ms_prompt_edit
-                st.session_state['ms_response'] = ChatGPT(domain_prompt_edit)
+                st.session_state['ms_response'] = ChatGPT(ms_prompt_edit)
         if 'ms_response' in st.session_state:
             st.write(st.session_state['ms_response'])
     else:
