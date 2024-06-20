@@ -40,15 +40,25 @@ def Domains():
 
 # Create a sidebar for navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "One Liner", "Domains"])
 
-# Navigate to the selected page
-if page == "Home":
+tabs = st.tabs(["Home", "One Liners", "Domains"])
+
+with tabs[0]:
     home()
-elif page == "One Liner":
+with tabs[1]:
     OneLiner()
-elif page == "Domains":
+with tabs[2]:
     Domains()
+
+# page = st.sidebar.radio("Go to", ["Home", "One Liner", "Domains"])
+
+# # Navigate to the selected page
+# if page == "Home":
+#     home()
+# elif page == "One Liner":
+#     OneLiner()
+# elif page == "Domains":
+#     Domains()
 
 # ## Capturing the idea
 # idea = st.text_input("What's your idea?")
