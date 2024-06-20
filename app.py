@@ -181,37 +181,78 @@ def MarketSizing():
         "Please enter an idea on the Input page."
 
 def Jingle():
-        song_prompt = "Create 1 stanzas of song lyrics for a pop, marketing song about my business idea. It should be a short jingle. Here's the idea: " + st.session_state['idea'] + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
-        song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + st.session_state['idea'] + ". Just provide the title, nothing else."
-
-        title = ChatGPT(song_title_prompt)
-        lyrics = ChatGPT(song_prompt)
-
-        music_generation_info = generate_music(suno_api_key, title, lyrics)
-        song_id = music_generation_info[0]["song_id"]
-        song_id = [song_id]
-
-        "## Surprise"
-        latest_iteration = st.empty()
-        bar = st.progress(0)
-
-        for i in range(100):
-            latest_iteration.text(f'Making magic {i+1}')
-            bar.progress(i + 1)
-            time.sleep(.5)
-
-        generated_results = query_generated_results(suno_api_key, song_id)
-
-        # Clear the placeholders
-        latest_iteration.empty()
-        bar.empty()
-
-        "### ...and now we\'re done! Your very own marketing jingle 🎶"
-        generated_results = query_generated_results(suno_api_key, song_id)
-        st.audio(generated_results[0]["audio_url"])
-        st.write(title)
-        st.write(lyrics)
+    st.title("Jingle")
+    if 'idea' in st.session_state:
+        if 'jingle_prompt' not in st.session_state:
+            st.session_state['jingle_prompt'] = "Create 1 stanza of song lyrics for a pop, marketing song about my business idea. It should be a short jingle. Here's the idea: " + st.session_state['idea'] + ". Just provide the lyrics, no extraneous or confirmation text. It should start with (Verse 1)."
+            st.session_state['jingle_title_prompt'] = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + st.session_state['idea'] + ". Just provide the title, nothing else."
         
+        jingle_prompt = st.text_area("Jingle Lyrics Prompt", st.session_state['jingle_prompt'])
+        jingle_title_prompt = st.text_area("Jingle Title Prompt", st.session_state['jingle_title_prompt'])
+        
+        if st.button("Submit", type="primary"):
+            st.session_state['jingle_prompt'] = jingle_prompt
+            st.session_state['jingle_title_prompt'] = jingle_title_prompt
+            st.session_state['jingle_title'] = ChatGPT(jingle_title_prompt)
+            st.session_state['jingle_lyrics'] = ChatGPT(jingle_prompt)
+            
+            music_generation_info = generate_music(suno_api_key, st.session_state['jingle_title'], st.session_state['jingle_lyrics'])
+            song_id = music_generation_info[0]["song_id"]
+            song_id = [song_id]
+
+            latest_iteration = st.empty()
+            bar = st.progress(0)
+
+            for i in range(100):
+                latest_iteration.text(f'Making magic {i+1}')
+                bar.progress(i + 1)
+                time.sleep(.1)
+
+            generated_results = query_generated_results(suno_api_key, song_id)
+            st.session_state['jingle_audio'] = generated_results[0]["audio_url"]
+
+            latest_iteration.empty()
+            bar.empty()
+
+        if 'jingle_audio' in st.session_state:
+            st.audio(st.session_state['jingle_audio'])
+            st.write(st.session_state['jingle_title'])
+            st.write(st.session_state['jingle_lyrics'])
+    else:
+        st.write("Please enter an idea on the Input page.")
+
+# def Jingle():
+#         song_prompt = "Create 1 stanzas of song lyrics for a pop, marketing song about my business idea. It should be a short jingle. Here's the idea: " + st.session_state['idea'] + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
+#         song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + st.session_state['idea'] + ". Just provide the title, nothing else."
+
+#         title = ChatGPT(song_title_prompt)
+#         lyrics = ChatGPT(song_prompt)
+
+#         music_generation_info = generate_music(suno_api_key, title, lyrics)
+#         song_id = music_generation_info[0]["song_id"]
+#         song_id = [song_id]
+
+#         "## Surprise"
+#         latest_iteration = st.empty()
+#         bar = st.progress(0)
+
+#         for i in range(100):
+#             latest_iteration.text(f'Making magic {i+1}')
+#             bar.progress(i + 1)
+#             time.sleep(.5)
+
+#         generated_results = query_generated_results(suno_api_key, song_id)
+
+#         # Clear the placeholders
+#         latest_iteration.empty()
+#         bar.empty()
+
+#         "### ...and now we\'re done! Your very own marketing jingle 🎶"
+#         generated_results = query_generated_results(suno_api_key, song_id)
+#         st.audio(generated_results[0]["audio_url"])
+#         st.write(title)
+#         st.write(lyrics)
+
 # NAVIGATION
 pages = {
     "Home": Home,
