@@ -160,7 +160,23 @@ def OneLiners():
     st.title("One Liners")
     if 'idea' in st.session_state:
         if 'ol_prompt' not in st.session_state:
-            prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.", key="oneliner")
+            one_liner_prompt = '''I'm starting a business.
+                This is my idea: ''' + st.session_state['idea'] + '''
+                Please provide me with 3 different business name options (1. Direct and clear, 2. Approachable and friendly: 3. Sticky and memorable (if possible try to use alliteration)).
+                Below is a template for what / how I want you to output the business names.
+                Note: “*business-name*” represents the part I want you to replace with the corresponding business name. For your response, just provide me with the business name and nothing else.
+                1. Direct: *business-name*
+                2. Approachable: *business-name*
+                3. Sticky: *business-name*
+                Context: Before you suggest options, look for existing companies that are similar and use their names as a reference point. Strongly weigh the attributes of the business name of the most successful businesses within my field to generate your suggestions.
+                Additional criteria for business name:
+                1. It should be pithy and clearly describe what the business does to a layman
+                2. They should be intriguing but not cringy
+                2. It should be memorable (very important)
+                3. It should ideally describe how we're a solution to a problem without the need for additional explanation
+                4. It should inspire confidence and make you want to trust and pay for the service / product
+                5. Whenever possible try to use alliteration to make it catchy, but don’t sacrifice accuracy and clarity for it for alliteration.'''
+            prompt = st.text_area("Prompt", one_liner_prompt, key="oneliner")
             if st.button("Submit", type="primary"):
                 st.session_state['ol_prompt'] = prompt
                 st.session_state['ol_response'] = ChatGPT(prompt)
