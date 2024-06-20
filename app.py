@@ -138,6 +138,24 @@ def Home():
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
 
+def CompanyName():
+    st.title("Company Name")
+    if 'idea' in st.session_state:
+        if 'cn_prompt' not in st.session_state:
+            prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different Company Names. Just provide me with the Company Names and nothing else.", key="oneliner")
+            if st.button("Submit", type="primary"):
+                st.session_state['cn_prompt'] = prompt
+                st.session_state['cn_response'] = ChatGPT(prompt)
+        else:
+            cn_prompt = st.text_area("Prompt", st.session_state['cn_prompt'], key="oneliner")
+            if st.button("Submit", type="primary"):
+                st.session_state['cn_prompt'] = cn_prompt
+                st.session_state['cn_response'] = ChatGPT(cn_prompt)
+        if 'cn_response' in st.session_state:
+            st.write(st.session_state['cn_response'])
+    else:
+        "Please enter an idea on the Input page."
+
 def OneLiners():
     st.title("One Liners")
     if 'idea' in st.session_state:
@@ -293,6 +311,7 @@ def Logos():
 # NAVIGATION
 pages = {
     "Home": Home,
+    "Company Name":, CompanyName,
     "One Liners": OneLiners,
     "Domains": Domains,
     "Market Sizing": MarketSizing,
