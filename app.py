@@ -137,27 +137,32 @@ def Home():
     if idea:
         st.session_state['idea'] = idea
         # Create the DataFrame for unit economics
-        # Create the DataFrame for unit economics
-        unit_economics_df = pd.DataFrame({
-            "Number of Units": [10, 20, 30, 40, 50],
-            "Average Price per Unit (CAD)": [150, 145, 140, 135, 130],
-            "Revenue (CAD)": [1500, 2900, 4200, 5400, 6500]
-        })
+        # Set the price per unit
+        price_per_hat = 25  # Example price per hat in dollars
 
-        # Display the DataFrame using Streamlit
-        st.dataframe(unit_economics_df)
+        # Create a list for the number of units sold
+        units_sold = list(range(1, 101))  # From 1 to 100 units
 
-        # Create the plot
-        fig, ax = plt.subplots()
-        ax.plot(unit_economics_df["Number of Units"], unit_economics_df["Revenue (CAD)"], marker='o', linestyle='-')
+        # Calculate revenue for each unit sold
+        revenue = [units * price_per_hat for units in units_sold]
 
-        # Set the labels and title
-        ax.set_xlabel("Number of Units")
-        ax.set_ylabel("Revenue (CAD)")
-        ax.set_title("Revenue vs. Number of Units")
+        # Create a DataFrame
+        df = pd.DataFrame({'Units Sold': units_sold, 'Revenue': revenue})
 
-        # Display the plot using Streamlit
-        st.pyplot(fig)
+        # Display DataFrame in Streamlit
+        st.write(df)
+
+        # Plot the data
+        plt.figure(figsize=(10, 6))
+        plt.plot(df['Units Sold'], df['Revenue'], marker='o')
+        plt.title('Revenue vs Units Sold')
+        plt.xlabel('Units Sold')
+        plt.ylabel('Revenue ($)')
+        plt.grid(True)
+        plt.show()
+
+        # Display the plot in Streamlit
+        st.pyplot(plt)
     
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
