@@ -19,7 +19,8 @@ client = openai.OpenAI()
 def home():
     st.title("Home")
     idea = st.text_input("Enter your idea:")
-    st.write(st.session_state['idea'])
+    if 'idea' in st.session_state:
+        st.write(st.session_state['idea'])
     if st.button("Submit") or idea:
         st.write("Current idea: " + idea)
         st.session_state['idea'] = idea
