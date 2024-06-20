@@ -82,6 +82,7 @@ def OneLiners():
             st.session_state['idea'] = text_value
             del st.session_state['OneLiners']
             oneliner.empty()
+            st.experimental_rerun()
             # st.session_state['idea'] = ol_txt
     elif 'idea' in st.session_state:
         prompt_variable = st.session_state['idea']
