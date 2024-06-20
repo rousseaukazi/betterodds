@@ -80,6 +80,8 @@ def OneLiners():
             st.session_state['ol'] = "new idea"
     elif 'idea' in st.session_state and 'ol' in st.session_state:
         st.write("edit: " + st.session_state['ol'])
+        if st.button("Two", type="secondary",key="Two"):
+            st.session_state['ol'] = "newest idea"
     else:
         st.write("no idea")
 
