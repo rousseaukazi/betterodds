@@ -83,6 +83,7 @@ def OneLiners():
         txtTwo = st.text_area("prompt",st.session_state['ol'],key="txtTwo")
         if st.button("Two", type="secondary",key="Two"):
             st.session_state['ol'] = txtTwo
+            st.write(st.session_state['ol'] + " " + st.session_state['ol'])
             st.rerun()
     else:
         st.write("no idea")
