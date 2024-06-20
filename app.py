@@ -143,7 +143,7 @@ def Home():
 
         Just produce the json snippet and nothing else''')
 
-        st.write(json_string["number_of_units"])
+        st.write(json_string)
 
         # json_object = json.loads(json_string)
 
