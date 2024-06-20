@@ -58,13 +58,86 @@ def check_remaining_quota(api_key):
     else:
         return {"error": f"HTTP {response.status_code}"}
 
+def generate_music(api_key, title, prompt, mv="chirp-v3-5", continue_at=None, continue_clip_id=None):
+    url = "https://api.sunoaiapi.com/api/v1/gateway/generate/music"
+    headers = {
+        "api-key": api_key,
+        "Content-Type": "application/json"
+    }
+    
+    data = {
+        "title": title,
+        "tags": 'pop, upbeat',
+        "prompt": prompt,
+        "mv": mv
+    }
+    
+    if continue_at is not None:
+        data["continue_at"] = continue_at
+    
+    if continue_clip_id is not None:
+        data["continue_clip_id"] = continue_clip_id
+
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+
+    if response.status_code == 200:
+        result = response.json()
+        if result['code'] == 0:
+            return result['data']
+        else:
+            return {"error": result['msg']}
+    else:
+        return {"error": f"HTTP {response.status_code}"}
+
+def query_generated_results(api_key, song_ids):
+    url = f"https://api.sunoaiapi.com/api/v1/gateway/query?ids={','.join(song_ids)}"
+    headers = {
+        "api-key": api_key,
+        "Content-Type": "application/json"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        # Print the entire response for debugging purposes
+        print("Response JSON:", data)
+        
+        if isinstance(data, list):
+            return data
+        elif isinstance(data, dict):
+            if data.get('code') == 0:
+                return data.get('data', {})
+            else:
+                return {"error": data.get('msg', 'Unknown error')}
+        else:
+            return {"error": "Unexpected response format"}
+    else:
+        return {"error": f"HTTP {response.status_code}"}
 # PAGE FUNCTIONS 
+
 def Home():
     st.title("Home")
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
-        st.write(check_remaining_quota(suno_api_key))
+        # st.write(check_remaining_quota(suno_api_key))
+        song_prompt = "Create 1 stanzas of song lyrics for a pop, marketing song about my business idea. It should be a short jingle. Here's the idea: " + st.session_state['idea'] + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
+        song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + st.session['idea'] + ". Just provide the title, nothing else."
+
+        title = ChatGPT(song_title_prompt)
+        lyrics = ChatGPT(song_prompt)
+
+        # Generate Song
+        music_generation_info = generate_music(suno_api_key, title, lyrics)
+        song_id = music_generation_info[0]["song_id"]
+        song_id = [song_id]
+        time.sleep(7)
+        generated_results = query_generated_results(suno_api_key, song_id)
+        st.audio(generated_results[0]["audio_url"])
+        st.write(title)
+        st.write(lyrics)
+
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
@@ -139,58 +212,5 @@ page = pages[selection]
 page()
 
 
-# def generate_music(api_key, title, prompt, mv="chirp-v3-5", continue_at=None, continue_clip_id=None):
-#     url = "https://api.sunoaiapi.com/api/v1/gateway/generate/music"
-#     headers = {
-#         "api-key": api_key,
-#         "Content-Type": "application/json"
-#     }
-    
-#     data = {
-#         "title": title,
-#         "tags": 'pop, upbeat',
-#         "prompt": prompt,
-#         "mv": mv
-#     }
-    
-#     if continue_at is not None:
-#         data["continue_at"] = continue_at
-    
-#     if continue_clip_id is not None:
-#         data["continue_clip_id"] = continue_clip_id
 
-#     response = requests.post(url, headers=headers, data=json.dumps(data))
 
-#     if response.status_code == 200:
-#         result = response.json()
-#         if result['code'] == 0:
-#             return result['data']
-#         else:
-#             return {"error": result['msg']}
-#     else:
-#         return {"error": f"HTTP {response.status_code}"}
-# def query_generated_results(api_key, song_ids):
-#     url = f"https://api.sunoaiapi.com/api/v1/gateway/query?ids={','.join(song_ids)}"
-#     headers = {
-#         "api-key": api_key,
-#         "Content-Type": "application/json"
-#     }
-
-#     response = requests.get(url, headers=headers)
-
-#     if response.status_code == 200:
-#         data = response.json()
-#         # Print the entire response for debugging purposes
-#         print("Response JSON:", data)
-        
-#         if isinstance(data, list):
-#             return data
-#         elif isinstance(data, dict):
-#             if data.get('code') == 0:
-#                 return data.get('data', {})
-#             else:
-#                 return {"error": data.get('msg', 'Unknown error')}
-#         else:
-#             return {"error": "Unexpected response format"}
-#     else:
-#         return {"error": f"HTTP {response.status_code}"}
