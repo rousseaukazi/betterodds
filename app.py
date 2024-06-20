@@ -79,8 +79,8 @@ def OneLiners():
         text_value = oneliner.text_area("Prompt", st.session_state['ol_prompt'])     
         if oneliner.text_area:
             # st.write(text_value)
-            st.session_state['idea'] = text_value
             del st.session_state['OneLiners']
+            st.session_state['OneLiners'] = ChatGPTNoStream(text_value).choices[0].message.content
             oneliner.empty()
             st.experimental_rerun()
             # st.session_state['idea'] = ol_txt
