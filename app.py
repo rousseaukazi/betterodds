@@ -75,14 +75,14 @@ def OneLiners():
     st.title("One Liners")
     
     if 'idea' in st.session_state and 'ol' not in st.session_state:
-        st.write("original idea: " + st.session_state['idea'])
+        txtOne = st.text_area("prompt",st.session_state['idea'],key="one")
         if st.button("One", type="primary", key="one"):
-            st.session_state['ol'] = "new idea"
+            st.session_state['ol'] = txtOne
             st.rerun()
     elif 'idea' in st.session_state and 'ol' in st.session_state:
-        st.write("edit: " + st.session_state['ol'])
+        txtTwo = st.text_area("prompt",st.session_state['ol'],key="two")
         if st.button("Two", type="secondary",key="Two"):
-            st.session_state['ol'] = "newest idea"
+            st.session_state['ol'] = txtTwo
             st.rerun()
     else:
         st.write("no idea")
