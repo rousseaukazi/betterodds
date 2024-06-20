@@ -52,12 +52,12 @@ def OneLiners():
     if 'idea' in st.session_state:
         if 'ol_prompt' not in st.session_state:
             prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.", key="oneliner")
-            if st.button("Submit", type="primary") or prompt:
+            if st.button("Submit", type="primary"):
                 st.session_state['ol_prompt'] = prompt
                 st.session_state['ol_response'] = ChatGPT(prompt)
         else:
             ol_prompt = st.text_area("Prompt", st.session_state['ol_prompt'], key="oneliner")
-            if st.button("Submit", type="primary") or ol_prompt:
+            if st.button("Submit", type="primary"):
                 st.session_state['ol_prompt'] = ol_prompt
                 st.session_state['ol_response'] = ChatGPT(ol_prompt)
 
@@ -71,12 +71,12 @@ def Domains():
     if 'idea' in st.session_state:
         if 'domain_prompt' not in st.session_state:
             domain_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.", key="domain")
-            if st.button("Submit", type="primary") or domain_prompt_default:
+            if st.button("Submit", type="primary"):
                 st.session_state['domain_prompt'] = domain_prompt_default
                 st.session_state['domain_response'] = ChatGPT(domain_prompt_default)
         else:
             domain_prompt_edit = st.text_area("Prompt", st.session_state['domain_prompt'], key="domain")
-            if st.button("Submit", type="primary") or domain_prompt_edit:
+            if st.button("Submit", type="primary"):
                 st.session_state['domain_prompt'] = domain_prompt_edit
                 st.session_state['domain_response'] = ChatGPT(domain_prompt_edit)
 
