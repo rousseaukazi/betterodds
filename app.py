@@ -73,7 +73,7 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
-    prompt = st.text_area("prompt",st.session_state['idea'])
+    prompt = st.text_area("prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.")
     ChatGPT(prompt)
 
     if st.button("submit",type="primary"):
