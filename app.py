@@ -143,7 +143,7 @@ def CompanyName():
     if 'idea' in st.session_state:
         if 'cn_prompt' not in st.session_state:
             company_name_prompt = '''I'm starting a business.
-                This is my idea: ''' + st.session_state['idea'] + '''
+                This is my idea: [[''' + st.session_state['idea'] + ''']]
                 Please provide me with 3 different business name options (1. Direct and clear, 2. Approachable and friendly: 3. Sticky and memorable (if possible try to use alliteration)).
                 Below is a template for what / how I want you to output the business names.
                 Note: “*business-name*” represents the part I want you to replace with the corresponding business name. For your response, just provide me with the business name and nothing else.
