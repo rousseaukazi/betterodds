@@ -75,9 +75,9 @@ def OneLiners():
     st.title("One Liners")
     oneliner = st.empty()
     if 'idea' in st.session_state and 'ol' not in st.session_state:
-        oneliner.text_area(st.session_state['idea'])
+        text_value = oneliner.text_area("Idea", st.session_state['idea'])
         if oneliner.text_area:
-            oneliner.text_area
+            text_value
     else:
         "There's no idea."
 
