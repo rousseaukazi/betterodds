@@ -75,10 +75,12 @@ def OneLiners():
     st.title("One Liners")
     if 'OneLiners' in st.session_state:
         st.write(st.session_state['OneLiners'])
+        ol_txt = st.text_area(st.session_state['ol_prompt'])
     elif 'idea' in st.session_state:
         prompt_variable = st.session_state['idea']
-        prompts = get_prompts(prompt_variable)
-        st.session_state['OneLiners'] = ChatGPTNoStream(prompts["OneLiner"]).choices[0].message.content
+        prompts = get_prompts(prompt_variable) 
+        st.session_state['ol_prompt'] = prompts['OneLiner']
+        st.session_state['OneLiners'] = ChatGPTNoStream(st.session_state['ol_prompt']).choices[0].message.content
         st.write(st.session_state['OneLiners'])
     else:
         st.write("No idea submitted yet.")
