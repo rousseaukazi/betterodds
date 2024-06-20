@@ -234,7 +234,6 @@ def Jingle():
     else:
         st.write("Please enter an idea on the Input page.")
 
-
 def Logos():
     st.title("Logos")
     if 'idea' in st.session_state:
@@ -242,12 +241,12 @@ def Logos():
             st.session_state['logo_prompt'] = "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo."
 
         with st.form(key='logo_form'):
-            logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'], key='logo_prompt')
+            logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
             submit_button = st.form_submit_button(label='Submit')
 
         if submit_button:
-            st.session_state['logo_prompt'] = logo_prompt
-            st.session_state['logo_response'] = image_generation(logo_prompt)
+            st.session_state['logo_prompt'] = logo_prompt  # Update the prompt in the session state
+            st.session_state['logo_response'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
         if 'logo_response' in st.session_state:
             st.image(st.session_state['logo_response'])
