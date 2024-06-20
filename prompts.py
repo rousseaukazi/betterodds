@@ -409,6 +409,7 @@ def get_prompts(var):
 #     bar.empty()
 
 #     "### ...and now we\'re done! Your very own marketing jingle 🎶"
+    # generated_results = query_generated_results(suno_api_key, song_id)
 #     st.audio(generated_results[0]["audio_url"])
 #     st.write(title)
 #     st.write(lyrics)
