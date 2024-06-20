@@ -4,6 +4,7 @@ import time
 import json
 import openai
 import requests
+import pandas as pd
 import streamlit as st
 from openai import OpenAI
 from prompts import get_prompts
@@ -134,6 +135,15 @@ def Home():
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
+        # Create the DataFrame for unit economics
+        unit_economics_df = pd.DataFrame({
+            "Number of Units": [10, 20, 30, 40, 50],
+            "Average Price per Unit (CAD)": [150, 145, 140, 135, 130],
+            "Revenue (CAD)": [1500, 2900, 4200, 5400, 6500]
+        })
+
+        # Display the DataFrame using Streamlit
+        st.dataframe(unit_economics_df)
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
