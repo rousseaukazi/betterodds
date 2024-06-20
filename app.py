@@ -67,7 +67,7 @@ def generate_music(api_key, title, prompt, mv="chirp-v3-5", continue_at=None, co
     
     data = {
         "title": title,
-        "tags": 'edm, techno, upbeat',
+        "tags": 'electronic, upbeat',
         "prompt": prompt,
         "mv": mv
     }
