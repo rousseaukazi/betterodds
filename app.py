@@ -80,6 +80,7 @@ def OneLiners():
         if submit:
             oneliner.empty()
             text_value
+            st.session_state['ol'] = "test"
             st.rerun()
     else:
         "There's no idea."
