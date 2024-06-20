@@ -73,9 +73,8 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
-    
     prompt = st.text_area("prompt",st.session_state['idea'])
-    result = ChatGPT(prompt)
+    ChatGPT(prompt)
 
     if st.button("submit",type="primary"):
         st.session_state['idea'] = prompt
