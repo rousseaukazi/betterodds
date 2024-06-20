@@ -40,7 +40,7 @@ def Domains():
 
 # Create a sidebar for navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Page 1", "Page 2"])
+page = st.sidebar.radio("Go to", ["Home", "One Liner", "Domains"])
 
 # Navigate to the selected page
 if page == "Home":
