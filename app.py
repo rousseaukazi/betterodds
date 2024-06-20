@@ -123,7 +123,7 @@ def Home():
         st.session_state['idea'] = idea
         # st.write(check_remaining_quota(suno_api_key))
         song_prompt = "Create 1 stanzas of song lyrics for a pop, marketing song about my business idea. It should be a short jingle. Here's the idea: " + st.session_state['idea'] + ". Just provide the lyrics no extranerous or confirmation text. It should start with (Verse 1)."
-        song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + st.session['idea'] + ". Just provide the title, nothing else."
+        song_title_prompt = "Create a title for a poppy, marketing song for my business idea. Here's the idea: " + st.session_state['idea'] + ". Just provide the title, nothing else."
 
         title = ChatGPT(song_title_prompt)
         lyrics = ChatGPT(song_prompt)
