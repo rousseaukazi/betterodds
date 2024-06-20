@@ -76,12 +76,12 @@ def OneLiners():
     if 'idea' in st.session_state and 'ol_prompt' not in st.session_state:
         prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.")
         ChatGPT(prompt)
-        if st.button("submit",type="primary"):
+        if st.button("submit",type="primary") or prompt:
             st.session_state['ol_prompt'] = prompt
     elif 'idea' in st.session_state and 'ol_prompt' in st.session_state:
         ol_prompt = st.text_area("Prompt", st.session_state['ol_prompt'])
         ChatGPT(ol_prompt)
-        if st.button("submit",type="primary"):
+        if st.button("submit",type="primary") or ol_prompt:
             st.session_state['ol_prompt'] = prompt
     else:
         "Please enter an idea on the Input page."
