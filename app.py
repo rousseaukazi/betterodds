@@ -177,7 +177,7 @@ def OneLiners():
     if 'idea' in st.session_state:
         if 'ol_prompt' not in st.session_state:
             one_liner_prompt = '''I'm starting a business.
-                This is my idea:[[]]''' + st.session_state['idea'] + ''']]
+                This is my idea:[[''' + st.session_state['idea'] + ''']]
                 Please provide me with 3 different one-liners (1. Direct and clear, 2. Approachable and friendly: 3. Sticky and memorable (if possible try to use alliteration)) to be used as a public facing company slogan that described my business.
                 Below is a template for what / how I want you to output the one-liners.
                 Note: "*insert respective one-liner*" represents the part I want you to replace with the corresponding one liners. For your response, just provide me with the one-liners and nothing else.
