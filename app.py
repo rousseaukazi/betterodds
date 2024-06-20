@@ -81,14 +81,14 @@ def OneLiners():
         submit = st.button("Submit", type="primary")
         if submit:
             st.session_state['ol'] = "hey"
-            st.write(st.session_state['ol'])
+            "hey"
             st.rerun()
     if 'idea' in st.session_state and 'ol' in st.session_state:
         "There is both an idea and OL."
         submit_ol = st.button("Submit", type="primary")
         if submit_ol:
             st.session_state['ol'] = "hey you"
-            st.write(st.session_state['ol'])
+            "hey you"
             st.rerun()
 
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
