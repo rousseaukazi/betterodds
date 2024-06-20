@@ -146,6 +146,9 @@ def Home():
         st.dataframe(unit_economics_df)
 
         st.bar_chart(unit_economics_df)
+        st.line_chart(unit_economics_df)
+        st.area_chart(unit_economics_df)
+        st.plotly_chart(unit_economics_df)
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
         st.write(st.session_state['idea'])
