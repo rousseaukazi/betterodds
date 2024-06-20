@@ -138,7 +138,7 @@ def Home():
         st.session_state['idea'] = idea
         # Create the DataFrame for unit economics
         # Set the price per unit
-        st.write(ChatGPT('''Below is an idea that I want to start. Given the idea, please reason an appropriate price for every unit I sell or service I offer. Once the price is set, respond with just the code for a simple pd.DataFrame in streamlit where the X Axis is the number of units and Y axis is revenue.
+        exec(ChatGPT('''Below is an idea that I want to start. Given the idea, please reason an appropriate price for every unit I sell or service I offer. Once the price is set, respond with just the code for a simple pd.DataFrame in streamlit where the X Axis is the number of units and Y axis is revenue.
 
         Idea: ''' + st.session_state['idea'] + '''
 
