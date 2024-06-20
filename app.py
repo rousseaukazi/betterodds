@@ -53,12 +53,12 @@ def OneLiners():
     if 'idea' in st.session_state:
         if 'ol_prompt' not in st.session_state:
             prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.", key="oneliner")
-            if st.button("Remix", type="primary"):
+            if st.button("Submit", type="primary"):
                 st.session_state['ol_prompt'] = prompt
                 st.session_state['ol_response'] = ChatGPT(prompt)
         else:
             ol_prompt = st.text_area("Prompt", st.session_state['ol_prompt'], key="oneliner")
-            if st.button("Remix", type="primary"):
+            if st.button("Submit", type="primary"):
                 st.session_state['ol_prompt'] = ol_prompt
                 st.session_state['ol_response'] = ChatGPT(ol_prompt)
         if 'ol_response' in st.session_state:
@@ -85,11 +85,29 @@ def Domains():
     else:
         "Please enter an idea on the Input page."
 
+def MarketSizing():
+    st.title("Market Sizing")
+    if 'idea' in st.session_state:
+        if 'ms_prompt' not in st.session_state:
+            ms_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with detailed yet concise bullet points detailing the market sizing. Use real numbers and figures. Just provide me with the market sizing and nothing else.")
+            if st.button("Submit", type="primary"):
+                st.session_state['ms_prompt'] = ms_prompt_default
+                st.session_state['ms_response'] = ChatGPT(ms_prompt_default)
+        else:
+            ms_prompt_edit = st.text_area("Prompt", st.session_state['ms_prompt'], key="domain")
+            if st.button("Submit", type="primary"):
+                st.session_state['ms_prompt'] = ms_prompt_edit
+                st.session_state['ms_response'] = ChatGPT(domain_prompt_edit)
+        if 'ms_response' in st.session_state:
+            st.write(st.session_state['ms_response'])
+    else:
+        "Please enter an idea on the Input page."
 # Navigation
 pages = {
     "Home": Home,
     "One Liners": OneLiners,
-    "Domains": Domains
+    "Domains": Domains,
+    "Market Sizing": MarketSizing
 }
 
 st.sidebar.title("Navigation")
