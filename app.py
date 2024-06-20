@@ -39,11 +39,11 @@ def Domains():
         st.write("No idea submitted yet.")
 
 # Create a sidebar for navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.selectbox("Go to", ["Home", "One Liners", "Domains"])
+st.sidebar.title("Component Library")
+page = st.sidebar.selectbox(["Input", "One Liners", "Domains"])
 
 # Navigate to the selected page
-if page == "Home":
+if page == "Input":
     home()
 elif page == "One Liners":
     OneLiner()
