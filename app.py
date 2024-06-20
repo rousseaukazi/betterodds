@@ -77,8 +77,7 @@ def OneLiners():
 
     # JUST IDEA 
     if 'idea' in st.session_state and 'ol' not in st.session_state:
-        txt_default = oneliner.text_area("Prompt", st.session_state['idea'])
-        txt_default
+        oneliner.text_area("Prompt", st.session_state['idea'])
         if oneliner.button("Submit", type="primary", key="default"):
             st.session_state['ol'] = txt_default
             oneliner.empty()
