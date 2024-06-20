@@ -79,7 +79,7 @@ def Home():
 
     if st.button("Foo"):
         st.session_state.value = "Foo"
-        st.rerun()
+        st.experimental_rerun()
 
 def OneLiners():
     st.title("One Liners")
