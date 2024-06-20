@@ -73,11 +73,14 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
-    prompt = st.text_area("prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.")
-    ChatGPT(prompt)
+    if 'idea' in st.session_state:
+        prompt = st.text_area("prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different one-liners I can use in my seed deck. Just provide me with the one-liners and nothing else.")
+        ChatGPT(prompt)
 
-    if st.button("submit",type="primary"):
-        st.session_state['idea'] = prompt
+        if st.button("submit",type="primary"):
+            st.session_state['idea'] = prompt
+    else:
+        "Please enter an idea on the Input page."
     
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
     #     txtOne = st.text_area("prompt",st.session_state['idea'],key="txtOne")
