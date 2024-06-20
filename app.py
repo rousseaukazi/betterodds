@@ -73,22 +73,23 @@ def Home():
 
 def OneLiners():
     st.title("One Liners")
-    oneliner = st.empty()
-
-    # JUST IDEA 
+    
     if 'idea' in st.session_state and 'ol' not in st.session_state:
-        oneliner.text_area("Prompt", st.session_state['idea'])
-        if oneliner.button("Submit", type="primary", key="default"):
-            st.session_state['ol'] = txt_default
-            oneliner.empty()
-    if 'idea' in st.session_state and 'ol' in st.session_state:
-        txt_edit = oneliner.text_area("Prompt", st.session_state['ol'])
-        if oneliner.button("Submit", type="primary", key="edit"):
-            oneliner.empty()
-            st.session_state['ol'] = txt_edit
-            st.rerun()
-            
+        st.write("original idea: " + st.session_state['idea'])
 
+    # # JUST IDEA 
+    # if 'idea' in st.session_state and 'ol' not in st.session_state:
+    #     oneliner.text_area("Prompt", st.session_state['idea'])
+    #     if oneliner.button("Submit", type="primary", key="default"):
+    #         st.session_state['ol'] = txt_default
+    #         oneliner.empty()
+    # if 'idea' in st.session_state and 'ol' in st.session_state:
+    #     txt_edit = oneliner.text_area("Prompt", st.session_state['ol'])
+    #     if oneliner.button("Submit", type="primary", key="edit"):
+    #         oneliner.empty()
+    #         st.session_state['ol'] = txt_edit
+    #         st.rerun()
+        
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
     #     text_value = oneliner.text_area("Idea", st.session_state['idea'])
     #     submit = st.button("submit", type="primary")
