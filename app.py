@@ -8,7 +8,6 @@ import pandas as pd
 import streamlit as st
 from openai import OpenAI
 from prompts import get_prompts
-import matplotlib.pyplot as plt
 
 # API_KEYS
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -142,7 +141,7 @@ def Home():
 
         Idea: ''' + st.session_state['idea'] + '''
 
-        Once again, just respond with the relevant code snippet and nothing else for just streamlit and pd.'''))
+        Once again, just respond with the relevant code snippet and nothing else for just streamlit and pd (no matlab).'''))
     
     if 'idea' in st.session_state:
         st.write("### Current Idea:")
