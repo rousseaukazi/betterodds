@@ -40,14 +40,14 @@ def Domains():
 
 # Create a sidebar for navigation
 st.sidebar.title("Navigation")
+page = st.sidebar.selectbox("Go to", ["Home", "One Liners", "Domains"])
 
-tabs = st.tabs(["Home", "One Liners", "Domains"])
-
-with tabs[0]:
+# Navigate to the selected page
+if page == "Home":
     home()
-with tabs[1]:
+elif page == "One Liners":
     OneLiner()
-with tabs[2]:
+elif page == "Domains":
     Domains()
 
 # page = st.sidebar.radio("Go to", ["Home", "One Liner", "Domains"])
