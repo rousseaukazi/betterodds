@@ -64,12 +64,22 @@ def ChatGPTNoStream(prompt):
 
 # Define the pages
 def Home():
-    st.title("Home")
-    idea = st.text_input("Enter your idea:")
-    if idea:
-        st.session_state['idea'] = idea
-    if 'idea' in st.session_state:
-        st.write(st.session_state['idea'])
+    # st.title("Home")
+    # idea = st.text_input("Enter your idea:")
+    # if idea:
+    #     st.session_state['idea'] = idea
+    # if 'idea' in st.session_state:
+    #     st.write(st.session_state['idea'])
+
+    if "value" not in st.session_state:
+        st.session_state.value = "Title"
+
+    ##### Option using st.rerun #####
+    st.header(st.session_state.value)
+
+    if st.button("Foo"):
+        st.session_state.value = "Foo"
+        st.rerun()
 
 def OneLiners():
     st.title("One Liners")
