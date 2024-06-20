@@ -77,15 +77,17 @@ def OneLiners():
 
     # JUST IDEA 
     if 'idea' in st.session_state and 'ol' not in st.session_state:
-        "One."
+        txt_default = oneliner.text_area("Prompt", st.session_state['idea'])
         if oneliner.button("Submit", type="primary", key="default"):
-            st.session_state['ol'] = "hey"
+            st.session_state['ol'] = txt_default
             oneliner.empty()
     if 'idea' in st.session_state and 'ol' in st.session_state:
-        "Two."
-        if st.button("Submit", type="primary", key="edit"):
-            st.session_state['ol'] = "hey you"
-            "hey you"
+        txt_edit = oneliner.text_area("Prompt", st.session_state['ol'])
+        if oneliner.button("Submit", type="primary", key="edit"):
+            oneliner.empty()
+            st.session_state['ol'] = txt_edit
+            st.rerun()
+            
 
     # if 'idea' in st.session_state and 'ol' not in st.session_state:
     #     text_value = oneliner.text_area("Idea", st.session_state['idea'])
