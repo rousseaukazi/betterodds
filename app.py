@@ -88,12 +88,16 @@ def OneLiners():
 
 def Domains():
     st.title("Domains")
-    if 'idea' in st.session_state:
+    if 'idea' in st.session_state and 'domain_prompt' not in st.session_state:
         prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with 3 different domains I can use in my seed deck. Just provide the domain name, a reason why, and nothing else.")
         ChatGPT(prompt)
-
-        if st.button("submit",type="primary"):
-            st.session_state['idea'] = prompt
+        if st.button("submit",type="primary") or prompt:
+            st.session_state['domain_prompt'] = prompt
+    elif 'idea' in st.session_state and 'domain_prompt' in st.session_state:
+        domain_prompt = st.text_area("Prompt", st.session_state['domain_prompt'])
+        ChatGPT(domain_prompt)
+        if st.button("submit",type="primary") or domain_prompt:
+            st.session_state['ol_prompt'] = domain_prompt
     else:
         "Please enter an idea on the Input page."
     
