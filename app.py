@@ -143,9 +143,11 @@ def Home():
 
         Just produce the json snippet and nothing else''')
 
-        json_object = json.loads(json_string)
+        st.write(json_string)
 
-        print(json_object)
+        # json_object = json.loads(json_string)
+
+        # print(json_object)
 
     
     if 'idea' in st.session_state:
