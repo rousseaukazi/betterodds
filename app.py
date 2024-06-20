@@ -241,13 +241,13 @@ def Logos():
             prompt = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Generate a simple, black icon for it similar to the style of the iconic apple or nike logo.")
             if st.button("Submit", type="primary"):
                 st.session_state['logo_prompt'] = prompt
-                st.session_state['logo_response'] = image_generation(prompt, 1, "1024x1024")
+                st.session_state['logo_response'] = image_generation(prompt, 2, "1024x1024")
                 st.image(st.session_state['logo_response'])
         else:
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'], key="oneliner")
             if st.button("Submit", type="primary"):
                 st.session_state['logo_prompt'] = logo_prompt
-                st.session_state['logo_response'] = image_generation(logo_prompt, 1, "1024x1024")
+                st.session_state['logo_response'] = image_generation(logo_prompt, 2, "1024x1024")
                 st.image(st.session_state['logo_response'])
         if 'ol_response' in st.session_state:
             st.image(st.session_state['logo_response'])
