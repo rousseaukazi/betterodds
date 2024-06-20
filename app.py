@@ -89,7 +89,7 @@ def MarketSizing():
     st.title("Market Sizing")
     if 'idea' in st.session_state:
         if 'ms_prompt' not in st.session_state:
-            ms_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with detailed yet concise bullet points detailing the market sizing. Use real numbers and figures. Just provide me with the market sizing and nothing else.")
+            ms_prompt_default = st.text_area("Prompt", "I'm starting a company. This is my idea " + st.session_state['idea'] + ". Please provide me with detailed yet concise bullet points detailing the market sizing. Use real numbers and figures. Just provide me with the market sizing and nothing else. Cap the response to < 10 bullets.")
             if st.button("Submit", type="primary"):
                 st.session_state['ms_prompt'] = ms_prompt_default
                 st.session_state['ms_response'] = ChatGPT(ms_prompt_default)
