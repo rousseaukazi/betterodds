@@ -45,7 +45,7 @@ def Home():
     if idea:
         st.session_state['idea'] = idea
     if 'idea' in st.session_state:
-        st.write(st.session_state['idea'])
+        st.write("**Current Idea:** " + st.session_state['idea'])
 
 def OneLiners():
     st.title("One Liners")
