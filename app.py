@@ -74,13 +74,14 @@ def Home():
 def OneLiners():
     st.title("One Liners")
     if 'OneLiners' in st.session_state:
-        st.write(st.session_state['OneLiners'])
+        oneliner = st.empty()
+        oneliner.text(st.session_state['OneLiners'])
         ol_txt = st.text_area("Prompt",st.session_state['ol_prompt'])
         if ol_txt:
             st.write(ol_txt)
             # del st.session_state['idea'] 
             # st.session_state['idea'] = ol_txt
-            st.empty
+            oneliner.empty()
             # OneLiners()
     elif 'idea' in st.session_state:
         prompt_variable = st.session_state['idea']
