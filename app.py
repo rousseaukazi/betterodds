@@ -76,6 +76,9 @@ def OneLiners():
     if 'OneLiners' in st.session_state:
         st.write(st.session_state['OneLiners'])
         ol_txt = st.text_area("Prompt",st.session_state['ol_prompt'])
+        if ol_txt:
+            st.write("Here's the new idea")
+            st.write(ol_txt)
     elif 'idea' in st.session_state:
         prompt_variable = st.session_state['idea']
         prompts = get_prompts(prompt_variable) 
