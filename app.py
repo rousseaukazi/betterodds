@@ -68,7 +68,7 @@ def Home():
     idea = st.text_input("Enter your idea:")
     if idea:
         st.session_state['idea'] = idea
-        st.session_state['ol_prompt'] = idea
+        st.session_state['ol'] = idea
     if 'idea' in st.session_state:
         st.write(st.session_state['idea'])
 
