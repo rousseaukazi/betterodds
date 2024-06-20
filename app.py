@@ -219,7 +219,7 @@ def Jingle():
             for i in range(100):
                 latest_iteration.text(f'Making magic {i+1}')
                 bar.progress(i + 1)
-                time.sleep(.1)
+                time.sleep(.5)
 
             generated_results = query_generated_results(suno_api_key, song_id)
             st.session_state['jingle_audio'] = generated_results[0]["audio_url"]
@@ -269,7 +269,3 @@ selection = st.sidebar.radio("Go to", list(pages.keys()))
 
 page = pages[selection]
 page()
-
-
-
-
