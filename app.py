@@ -349,10 +349,10 @@ def Video():
         st.write(json_data)
         st.write(video_id)
 
-    def getVideo():
+    def getVideo(vid):
         import requests
 
-        url = "https://api.synthesia.io/v2/videos/adb212a7-4c44-4182-8ee6-558f92a685a0"
+        url = "https://api.synthesia.io/v2/videos/" + vid
 
         headers = {
             "accept": "application/json",
@@ -362,7 +362,8 @@ def Video():
         response = requests.get(url, headers=headers)
     
     if st.button("Generate", type="primary"):
-            createVideo()
+            # createVideo()
+            getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")
 
 # NAVIGATION
 pages = {
