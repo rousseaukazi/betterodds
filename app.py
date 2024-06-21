@@ -364,7 +364,7 @@ def Video():
     
     if st.button("Generate", type="primary"):
             # createVideo()
-            getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")
+            getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")["download"]
 
 # NAVIGATION
 pages = {
