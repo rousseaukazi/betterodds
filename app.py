@@ -345,7 +345,7 @@ def Video():
         response = requests.post(url, json=payload, headers=headers)
 
         json_data = response.json()
-        video_id = json_data[1]
+        video_id = json_data
         st.write(json_data)
         st.write(video_id)
 
