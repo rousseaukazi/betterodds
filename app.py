@@ -344,7 +344,8 @@ def Video():
 
         response = requests.post(url, json=payload, headers=headers)
 
-        st.write(response)
+        json_data = response.json()
+        st.write(json_data)
 
     def getVideo():
         import requests
