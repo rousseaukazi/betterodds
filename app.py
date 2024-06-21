@@ -360,11 +360,12 @@ def Video():
         }
 
         response = requests.get(url, headers=headers)
-        return st.write(response.json())
+        return response.json()
     
     if st.button("Generate", type="primary"):
             # createVideo()
-            getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")["download"]
+            getVideoResponse = getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")
+            getVideoResponse["download"]
 
 # NAVIGATION
 pages = {
