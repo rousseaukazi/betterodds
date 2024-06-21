@@ -344,7 +344,7 @@ def Video():
 
         response = requests.post(url, json=payload, headers=headers)
 
-        st.write(response.text["id"])
+        st.write(response.text)
 
     def getVideo():
         import requests
@@ -358,7 +358,8 @@ def Video():
 
         response = requests.get(url, headers=headers)
 
-        print(response.text)
+        resp = json.loads(response.text)
+        st.write(resp)
     
     if st.button("Generate", type="primary"):
             createVideo()
