@@ -344,8 +344,22 @@ def Video():
 
         response = requests.post(url, json=payload, headers=headers)
 
-        st.write(response.text)
+        st.write(response.text.id)
 
+    def getVideo():
+        import requests
+
+        url = "https://api.synthesia.io/v2/videos/adb212a7-4c44-4182-8ee6-558f92a685a0"
+
+        headers = {
+            "accept": "application/json",
+            "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
+        }
+
+        response = requests.get(url, headers=headers)
+
+        print(response.text)
+    
     if st.button("Generate", type="primary"):
             createVideo()
 
