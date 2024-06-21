@@ -313,7 +313,7 @@ def Video():
         url = "https://api.synthesia.io/v2/videos"
 
         payload = {
-            "test": "True",
+            "test": "false",
             "visibility": "public",
             "title": "My first Synthetic video",
             "description": "Intro Test",
