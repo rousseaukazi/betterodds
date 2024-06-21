@@ -360,6 +360,7 @@ def Video():
         }
 
         response = requests.get(url, headers=headers)
+        return response
     
     if st.button("Generate", type="primary"):
             # createVideo()
