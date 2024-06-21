@@ -306,6 +306,49 @@ def Logos():
     else:
         st.write("Please enter an idea on the Input page.")
     
+def Video():
+
+    def createVideo():
+
+        url = "https://api.synthesia.io/v2/videos"
+
+        payload = {
+            "test": "True",
+            "visibility": "public",
+            "title": "My first Synthetic video",
+            "description": "Intro Test",
+            "input": [
+                {
+                    "avatarSettings": {
+                        "horizontalAlign": "center",
+                        "scale": 1,
+                        "style": "rectangular",
+                        "seamless": False
+                    },
+                    "backgroundSettings": { "videoSettings": {
+                            "shortBackgroundContentMatchMode": "freeze",
+                            "longBackgroundContentMatchMode": "trim"
+                        } },
+                    "scriptText": "Hello, World! This is my first synthetic video, made with the Synthesia API!",
+                    "avatar": "anna_costume1_cameraA",
+                    "background": "large_window"
+                }
+            ],
+            "soundtrack": "modern"
+        }
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+
+        st.write(response.text)
+
+    if st.button("Generate", type="primary"):
+            createVideo()
+
 # NAVIGATION
 pages = {
     "Home": Home,
@@ -314,7 +357,8 @@ pages = {
     "Domains": Domains,
     "Market Sizing": MarketSizing,
     "Jingle": Jingle,
-    "Logos": Logos
+    "Logos": Logos,
+    "Videos": Video
 }
 
 st.sidebar.title("Navigation")
