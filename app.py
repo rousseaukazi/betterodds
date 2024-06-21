@@ -359,7 +359,7 @@ def Video():
         response = requests.get(url, headers=headers)
 
         resp = json.loads(response.text)
-        st.write(resp)
+        st.write(resp["id"])
     
     if st.button("Generate", type="primary"):
             createVideo()
