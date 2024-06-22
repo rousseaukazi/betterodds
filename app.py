@@ -320,7 +320,7 @@ def Logos():
             st.session_state['logo_response_one'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
             if 'logo_response_one' in st.session_state:
                 st.image(st.session_state['logo_response_one'])
-                remove_bg(st.session_state['logo_response_one'])
+                st.write(remove_bg(st.session_state['logo_response_one']))
         #     st.session_state['logo_response_two'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         #     st.session_state['logo_response_three'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
