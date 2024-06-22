@@ -302,7 +302,7 @@ def Logos():
             st.session_state['logo_response'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
         if 'logo_response' in st.session_state:
-            st.image(st.session_state['logo_response'],width="512")
+            st.image(st.session_state['logo_response'],width=400)
     else:
         st.write("Please enter an idea on the Input page.")
     
