@@ -292,7 +292,7 @@ def Jingle():
 
 def Logos():
     st.title("Logos")
-    svg_code = '''<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    svg_code = '''<svg width="800" height="600" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
   <!-- Base of the lawnmower -->
   <rect x="100" y="250" width="300" height="100" fill="black" />
   
@@ -326,8 +326,9 @@ def Logos():
   <path d="M100,370 Q120,350 140,370 Q160,350 180,370 Q200,350 220,370 Q240,350 260,370 Q280,350 300,370 Q320,350 340,370 Q360,350 380,370 Q400,350 420,370" fill="none" stroke="black" stroke-width="2" />
 </svg>
 
+
 '''
-    st.html(svg_code)
+    components.html(svg_code)
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
             st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea?  Draw a black and white, simplified version of just that object in the style of Pentagram (the design agency)."
