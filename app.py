@@ -129,6 +129,21 @@ def image_generation(prompt_arg):
         image_url = response.data[0].url
         return image_url
 
+def remove_bg(image_url):
+    response = requests.post(
+        'https://api.remove.bg/v1.0/removebg',
+        data={
+            'image_url': image_url,
+            'size': 'auto'
+        },
+        headers={'X-Api-Key': 'krRb4KPnbYjspMybxGKGBMmh'},
+    )
+    if response.status_code == requests.codes.ok:
+        with open('no-bg.png', 'wb') as out:
+            st.write(response.content)
+    else:
+        print("Error:", response.status_code, response.text)
+
 # PAGE FUNCTIONS 
 
 def Home():
@@ -303,24 +318,25 @@ def Logos():
         if submit_button:
             st.session_state['logo_prompt'] = logo_prompt  # Update the prompt in the session state
             st.session_state['logo_response_one'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
-            # if 'logo_response_one' in st.session_state:
-            #     st.image(st.session_state['logo_response_one'])
-            st.session_state['logo_response_two'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
-            st.session_state['logo_response_three'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
+            if 'logo_response_one' in st.session_state:
+                st.image(st.session_state['logo_response_one'])
+                remove_bg(st.session_state['logo_response_one'])
+        #     st.session_state['logo_response_two'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
+        #     st.session_state['logo_response_three'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
-        if all(key in st.session_state for key in ['logo_response_one', 'logo_response_two', 'logo_response_three']):
-            # Create columns
-            col1, col2, col3 = st.columns(3)
+        # if all(key in st.session_state for key in ['logo_response_one', 'logo_response_two', 'logo_response_three']):
+        #     # Create columns
+        #     col1, col2, col3 = st.columns(3)
 
-            # Add images to each column
-            with col1:
-                st.image(st.session_state['logo_response_one'], use_column_width=True)
+        #     # Add images to each column
+        #     with col1:
+        #         st.image(st.session_state['logo_response_one'], use_column_width=True)
 
-            with col2:
-                st.image(st.session_state['logo_response_two'], use_column_width=True)
+        #     with col2:
+        #         st.image(st.session_state['logo_response_two'], use_column_width=True)
 
-            with col3:
-                st.image(st.session_state['logo_response_three'], use_column_width=True)
+        #     with col3:
+        #         st.image(st.session_state['logo_response_three'], use_column_width=True)
     else:
         st.write("Please enter an idea on the Input page.")
     
