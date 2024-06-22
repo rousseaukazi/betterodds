@@ -331,15 +331,15 @@ def Logos():
 
             # Add images to each column
             with col1:
-                st.image(st.session_state['logo_response_one'], use_column_width=True)
+                # st.image(st.session_state['logo_response_one'], use_column_width=True)
                 remove_bg(st.session_state['logo_response_one'])
 
             with col2:
-                st.image(st.session_state['logo_response_two'], use_column_width=True)
+                # st.image(st.session_state['logo_response_two'], use_column_width=True)
                 remove_bg(st.session_state['logo_response_two'])
 
             with col3:
-                st.image(st.session_state['logo_response_three'], use_column_width=True)
+                # st.image(st.session_state['logo_response_three'], use_column_width=True)
                 remove_bg(st.session_state['logo_response_three'])
     else:
         st.write("Please enter an idea on the Input page.")
