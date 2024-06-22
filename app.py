@@ -290,6 +290,26 @@ def Jingle():
 
 def Logos():
     st.title("Logos")
+    svg_code = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Hat Logo</title>
+</head>
+<body>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="black" stroke-width="2">
+            <!-- Hat Brim -->
+            <ellipse cx="100" cy="150" rx="70" ry="20" fill="black"/>
+            <!-- Hat Body -->
+            <path d="M50,150 C50,130 70,100 100,100 C130,100 150,130 150,150 Z" fill="black"/>
+        </g>
+    </svg>
+</body>
+</html>
+'''
+    st.html(svg_code)
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
             st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea?  Draw a black and white, simplified version of just that object in the style of Pentagram (the design agency)."
