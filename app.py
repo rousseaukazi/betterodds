@@ -302,7 +302,19 @@ def Logos():
             st.session_state['logo_response'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
         if 'logo_response' in st.session_state:
-            st.image(st.session_state['logo_response'],width=400)
+            # Create columns
+            col1, col2, col3 = st.columns(3)
+
+            # Add images to each column
+            with col1:
+                st.image(st.session_state['logo_response'], use_column_width=True)
+
+            with col2:
+                st.image(st.session_state['logo_response'], use_column_width=True)
+
+            with col3:
+                st.image(st.session_state['logo_response'], use_column_width=True)
+            # st.image(st.session_state['logo_response'],width=400)
     else:
         st.write("Please enter an idea on the Input page.")
     
