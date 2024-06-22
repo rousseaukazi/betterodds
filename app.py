@@ -14,7 +14,7 @@ import streamlit.components.v1 as components
 # API_KEYS
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 client = openai.OpenAI()
-suno_api_key = '72+hIHnhRYYVuu3v3CGc8P+QvZqSZJpk'
+suno_api_key = st.secrets["SUNOAI_API_KEY"]
 
 # Streamlit title
 "# 👌 ✌️ ☝️"
@@ -136,7 +136,7 @@ def remove_bg(image_url):
             'image_url': image_url,
             'size': 'auto'
         },
-        headers={'X-Api-Key': 'krRb4KPnbYjspMybxGKGBMmh'},
+        headers={'X-Api-Key': st.secrets["REMOVE_BG_API_KEY"]},
     )
     if response.status_code == requests.codes.ok:
         with open('no-bg.png', 'wb') as out:
