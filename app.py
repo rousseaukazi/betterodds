@@ -292,14 +292,18 @@ def Jingle():
 
 def Logos():
     st.title("Logos")
-    svg_code = '''<svg width="800" height="600" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    import streamlit as st
+
+# SVG code as a string
+svg_code = '''
+<svg width="800" height="600" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
   <!-- Base of the lawnmower -->
   <rect x="100" y="250" width="300" height="100" fill="black" />
   
   <!-- Handle of the lawnmower -->
   <line x1="150" y1="250" x2="100" y2="100" stroke="black" stroke-width="10" />
   <line x1="350" y1="250" x2="400" y2="100" stroke="black" stroke-width="10" />
-  <line x1="100" y1="100" x2="400" y2="100" stroke="black" stroke-width="10" />
+  <line x1="100" y1="100" x2="400" y1="100" stroke="black" stroke-width="10" />
 
   <!-- Lawn mower deck details -->
   <rect x="120" y="270" width="260" height="60" fill="none" stroke="black" stroke-width="4" />
@@ -325,10 +329,46 @@ def Logos():
   <!-- Grass details -->
   <path d="M100,370 Q120,350 140,370 Q160,350 180,370 Q200,350 220,370 Q240,350 260,370 Q280,350 300,370 Q320,350 340,370 Q360,350 380,370 Q400,350 420,370" fill="none" stroke="black" stroke-width="2" />
 </svg>
-
-
 '''
-    components.html(svg_code)
+
+# Create an iframe to display the SVG
+st.markdown(f'<iframe srcdoc="{svg_code}" width="1000" height="700" frameborder="0"></iframe>', unsafe_allow_html=True)
+
+#     svg_code = '''<svg width="800" height="600" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+#   <!-- Base of the lawnmower -->
+#   <rect x="100" y="250" width="300" height="100" fill="black" />
+  
+#   <!-- Handle of the lawnmower -->
+#   <line x1="150" y1="250" x2="100" y2="100" stroke="black" stroke-width="10" />
+#   <line x1="350" y1="250" x2="400" y2="100" stroke="black" stroke-width="10" />
+#   <line x1="100" y1="100" x2="400" y2="100" stroke="black" stroke-width="10" />
+
+#   <!-- Lawn mower deck details -->
+#   <rect x="120" y="270" width="260" height="60" fill="none" stroke="black" stroke-width="4" />
+#   <rect x="140" y="290" width="220" height="20" fill="none" stroke="black" stroke-width="4" />
+
+#   <!-- Engine of the lawnmower -->
+#   <rect x="200" y="210" width="100" height="40" fill="black" />
+#   <circle cx="250" cy="210" r="10" fill="black" />
+#   <line x1="250" y1="210" x2="250" y2="170" stroke="black" stroke-width="4" />
+#   <rect x="245" y="170" width="10" height="20" fill="black" />
+
+#   <!-- Blades under the lawnmower -->
+#   <line x1="150" y1="300" x2="350" y2="300" stroke="black" stroke-width="2" />
+#   <line x1="175" y1="310" x2="325" y2="310" stroke="black" stroke-width="2" />
+#   <line x1="200" y1="320" x2="300" y2="320" stroke="black" stroke-width="2" />
+
+#   <!-- Wheels of the lawnmower -->
+#   <circle cx="150" cy="360" r="30" fill="black" />
+#   <circle cx="350" cy="360" r="30" fill="black" />
+#   <circle cx="150" cy="360" r="20" fill="none" stroke="white" stroke-width="4" />
+#   <circle cx="350" cy="360" r="20" fill="none" stroke="white" stroke-width="4" />
+
+#   <!-- Grass details -->
+#   <path d="M100,370 Q120,350 140,370 Q160,350 180,370 Q200,350 220,370 Q240,350 260,370 Q280,350 300,370 Q320,350 340,370 Q360,350 380,370 Q400,350 420,370" fill="none" stroke="black" stroke-width="2" />
+# </svg>
+# '''
+#     components.html(svg_code)
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
             st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea?  Draw a black and white, simplified version of just that object in the style of Pentagram (the design agency)."
