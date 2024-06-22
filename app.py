@@ -327,7 +327,7 @@ def Logos():
 </svg>
 
 '''
-    components.html(svg_code)
+    st.html(svg_code)
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
             st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea?  Draw a black and white, simplified version of just that object in the style of Pentagram (the design agency)."
