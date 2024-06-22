@@ -292,31 +292,15 @@ def Jingle():
 
 def Logos():
     st.title("Logos")
-    svg_code = '''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lawnmower Logo</title>
-    <style>
-        .logo {
-            width: 100px;
-            height: 100px;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="black">
-        <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" />
-        <rect x="20" y="30" width="24" height="10" />
-        <circle cx="20" cy="50" r="6" />
-        <circle cx="44" cy="50" r="6" />
-    </svg>
-</body>
-</html>
-
+    svg_code = '''<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pentagram style simple, abstract lawnmower logo -->
+  <rect x="50" y="100" width="100" height="30" fill="black" />
+  <rect x="70" y="80" width="60" height="30" fill="black" />
+  <line x1="80" y1="60" x2="120" y2="60" stroke="black" stroke-width="5" />
+  <line x1="100" y1="60" x2="100" y2="80" stroke="black" stroke-width="5" />
+  <circle cx="70" cy="140" r="15" fill="black" />
+  <circle cx="130" cy="140" r="15" fill="black" />
+</svg>
 '''
     components.html(svg_code)
     if 'idea' in st.session_state:
