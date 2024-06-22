@@ -295,7 +295,7 @@ def Logos():
 
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
-            st.session_state['logo_prompt'] = "For this business idea [[" + st.session_state['idea'] + "]], what's the single object that best represents the idea? Draw a simple, abstract version of only that object, in black on a white square, in the style of Pentagram (the famous design agency)."
+            st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea? Draw a simple and abstract version of that object (no letters), in black, on a white square, in the style of Pentagram (the famous design agency)."
         with st.form(key='logo_form'):
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
             submit_button = st.form_submit_button(label='Submit')
@@ -303,23 +303,25 @@ def Logos():
         if submit_button:
             st.session_state['logo_prompt'] = logo_prompt  # Update the prompt in the session state
             st.session_state['logo_response_one'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
-            st.session_state['logo_response_two'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
-            st.session_state['logo_response_three'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
+            if 'logo_response_one' in st.session_state:
+                st.image(st.session_state['logo_response_one'])
+        #     st.session_state['logo_response_two'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
+        #     st.session_state['logo_response_three'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
-        if all(key in st.session_state for key in ['logo_response_one', 'logo_response_two', 'logo_response_three']):
-            # Create columns
-            col1, col2, col3 = st.columns(3)
+        # if all(key in st.session_state for key in ['logo_response_one', 'logo_response_two', 'logo_response_three']):
+        #     # Create columns
+        #     col1, col2, col3 = st.columns(3)
 
-            # Add images to each column
-            with col1:
-                st.image(st.session_state['logo_response_one'], use_column_width=True)
+        #     # Add images to each column
+        #     with col1:
+        #         st.image(st.session_state['logo_response_one'], use_column_width=True)
 
-            with col2:
-                st.image(st.session_state['logo_response_two'], use_column_width=True)
+        #     with col2:
+        #         st.image(st.session_state['logo_response_two'], use_column_width=True)
 
-            with col3:
-                st.image(st.session_state['logo_response_three'], use_column_width=True)
-            # st.image(st.session_state['logo_response'],width=400)
+        #     with col3:
+        #         st.image(st.session_state['logo_response_three'], use_column_width=True)
+        #     # st.image(st.session_state['logo_response'],width=400)
     else:
         st.write("Please enter an idea on the Input page.")
     
