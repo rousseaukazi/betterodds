@@ -295,7 +295,7 @@ def Logos():
 
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
-            st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea? Draw a simple and abstract version of that object (no letters), in black, on a white square, in the style of Pentagram (the famous design agency)."
+            st.session_state['logo_prompt'] = "For this business idea [["+st.session_state['idea']+"]], what's the single object that best represents the idea? Draw a simple and abstract version of that object (no letters), in black, on a white square, in the style of Pentagram (the famous logo design agency)."
         with st.form(key='logo_form'):
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
             submit_button = st.form_submit_button(label='Submit')
