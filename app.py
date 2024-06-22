@@ -140,7 +140,7 @@ def remove_bg(image_url):
     )
     if response.status_code == requests.codes.ok:
         with open('no-bg.png', 'wb') as out:
-            st.write(response.json())
+            out.write(response.content)
     else:
         print("Error:", response.status_code, response.text)
 
