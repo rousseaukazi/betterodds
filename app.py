@@ -297,19 +297,26 @@ def Logos():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Hat Logo</title>
+    <title>Lawnmower Logo</title>
+    <style>
+        .logo {
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" stroke="black" stroke-width="2">
-            <!-- Hat Brim -->
-            <ellipse cx="100" cy="150" rx="70" ry="20" fill="black"/>
-            <!-- Hat Body -->
-            <path d="M50,150 C50,130 70,100 100,100 C130,100 150,130 150,150 Z" fill="black"/>
-        </g>
+    <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="black">
+        <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" />
+        <rect x="20" y="30" width="24" height="10" />
+        <circle cx="20" cy="50" r="6" />
+        <circle cx="44" cy="50" r="6" />
     </svg>
 </body>
 </html>
+
 '''
     components.html(svg_code)
     if 'idea' in st.session_state:
