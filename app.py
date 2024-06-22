@@ -140,7 +140,8 @@ def remove_bg(image_url):
     )
     if response.status_code == requests.codes.ok:
         with open('no-bg.png', 'wb') as out:
-            return out.write(response.content)
+            out.write(response.content)
+            st.image("no-bg.png")
     else:
         print("Error:", response.status_code, response.text)
 
@@ -320,7 +321,7 @@ def Logos():
             st.session_state['logo_response_one'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
             if 'logo_response_one' in st.session_state:
                 st.image(st.session_state['logo_response_one'])
-                st.image(remove_bg(st.session_state['logo_response_one']))
+                remove_bg(st.session_state['logo_response_one'])
         #     st.session_state['logo_response_two'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         #     st.session_state['logo_response_three'] = image_generation(st.session_state['logo_prompt'])  # Generate the image using the updated prompt
         
