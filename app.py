@@ -295,7 +295,7 @@ def Logos():
 
     if 'idea' in st.session_state:
         if 'logo_prompt' not in st.session_state:
-            st.session_state['logo_prompt'] = "Simplify the idea in brackets to just 2 words [["+st.session['idea']+"]]. Store that answer in SIMPLIFIED_IDEA. For the SIMPLIFIED_IDEA, what's the single object that best represents the idea? Store that in OBJECT. Draw a simple yet modern icon of just that OBJECT (no letters), in black, on a white circle, in the style of Pentagram (the famous logo design agency)."
+            st.session_state['logo_prompt'] = "Simplify the idea in brackets to just 2 words [["+st.session_state['idea']+"]]. Store that answer in SIMPLIFIED_IDEA. For the SIMPLIFIED_IDEA, what's the single object that best represents the idea? Store that in OBJECT. Draw a simple yet modern icon of just that OBJECT (no letters), in black, on a white circle, in the style of Pentagram (the famous logo design agency)."
         with st.form(key='logo_form'):
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
             submit_button = st.form_submit_button(label='Submit')
