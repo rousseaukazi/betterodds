@@ -153,7 +153,7 @@ def Home():
     st.title("Home")
     with st.form(key='home_form'):
         idea = st.text_input("Enter your idea:")
-        submit_button = st.form_submit_button(label='Submit')
+        submit_button = st.form_submit_button(label='Submit', type="primary")
     
     if submit_button:
         st.session_state['idea'] = idea
