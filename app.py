@@ -223,7 +223,7 @@ def OneLiners():
             else:
                 prompt = st.text_area("Prompt", st.session_state['ol_prompt'], key="oneliner")
             
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit',type="primary")
         
         if submit_button:
             st.session_state['ol_prompt'] = prompt
@@ -253,7 +253,7 @@ def Domains():
             else:
                 domain_prompt_edit = st.text_area("Prompt", st.session_state['domain_prompt'], key="domain")
             
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit',type="primary")
         
         if submit_button:
             st.session_state['domain_prompt'] = domain_prompt_edit
@@ -295,7 +295,7 @@ def Jingle():
             jingle_prompt = st.text_area("Jingle Lyrics Prompt", st.session_state['jingle_prompt'])
             jingle_title_prompt = st.text_area("Jingle Title Prompt", st.session_state['jingle_title_prompt'])
             
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit',type="primary")
         
         if submit_button:
             st.session_state['jingle_prompt'] = jingle_prompt
@@ -335,7 +335,7 @@ def Logos():
             if 'logo_prompt' not in st.session_state:
                 st.session_state['logo_prompt'] = "Simplify the idea in brackets to just 2 words [[" + st.session_state['idea'] + "‌]]. Store that answer in SIMPLIFIED_IDEA. For the SIMPLIFIED_IDEA, what's the single object that best represents the idea? Store that in OBJECT. Produce a simple yet geometric icon of just that OBJECT (no letters), in black, on a white circle, in the style of Pentagram (the famous logo design agency)."
             logo_prompt = st.text_area("Prompt", st.session_state['logo_prompt'])
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit',type="primary")
         
         if submit_button:
             st.session_state['logo_prompt'] = logo_prompt
@@ -346,13 +346,13 @@ def Logos():
         if all(key in st.session_state for key in ['logo_response_one', 'logo_response_two', 'logo_response_three']):
             col1, col2, col3 = st.columns(3)
             with col1:
-                st.image(st.session_state['logo_response_one'], use_column_width=True)
+                # st.image(st.session_state['logo_response_one'], use_column_width=True)
                 remove_bg(st.session_state['logo_response_one'])
             with col2:
-                st.image(st.session_state['logo_response_two'], use_column_width=True)
+                # st.image(st.session_state['logo_response_two'], use_column_width=True)
                 remove_bg(st.session_state['logo_response_two'])
             with col3:
-                st.image(st.session_state['logo_response_three'], use_column_width=True)
+                # st.image(st.session_state['logo_response_three'], use_column_width=True)
                 remove_bg(st.session_state['logo_response_three'])
     else:
         st.write("Please enter an idea on the Input page.")
