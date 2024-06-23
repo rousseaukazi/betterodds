@@ -187,7 +187,7 @@ def CompanyName():
             else:
                 prompt = st.text_area("Prompt", st.session_state['cn_prompt'], key="businessname")
             
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit',type="primary")
         
         if submit_button:
             st.session_state['cn_prompt'] = prompt
@@ -273,7 +273,7 @@ def MarketSizing():
             else:
                 ms_prompt_default = st.text_area("Prompt", st.session_state['ms_prompt'], key="domain")
             
-            submit_button = st.form_submit_button(label='Submit')
+            submit_button = st.form_submit_button(label='Submit',type="primary")
         
         if submit_button:
             st.session_state['ms_prompt'] = ms_prompt_default
@@ -405,7 +405,7 @@ def Video():
         return response.json()
     
     with st.form(key='video_form'):
-        submit_button = st.form_submit_button(label='Generate')
+        submit_button = st.form_submit_button(label='Generate',type="primary")
     
     if submit_button:
         getVideoResponse = getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")
