@@ -358,6 +358,7 @@ def Logos():
         st.write("Please enter an idea on the Input page.")
     
 def Video():
+    st.title("Intro Video")
     def createVideo():
         url = "https://api.synthesia.io/v2/videos"
         payload = {
