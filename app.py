@@ -404,20 +404,21 @@ def Video():
     if 'idea' in st.session_state:
         with st.form(key='video_form'):
             submit_button = st.form_submit_button(label='Generate',type="primary")
+            if submit_button:
+                counter = 0
+                createVideoResponse = createVideo()
+                st.write(createVideoResponse["id"])
+                st.write(getVideo(createVideoResponse["id"])["status"])
+                while getVideo(createVideoResponse["id"])["status"] != "complete":
+                    st.write(str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
+                    time.sleep(5)
+                    counter = counter + 5
+                st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
+                st.video(getVideo(createVideoResponse["id"])["download"])
     else:
         st.write("Please enter an idea on Home.")
     
-    if submit_button:
-        counter = 0
-        createVideoResponse = createVideo()
-        st.write(createVideoResponse["id"])
-        st.write(getVideo(createVideoResponse["id"])["status"])
-        while getVideo(createVideoResponse["id"])["status"] != "complete":
-            st.write(str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
-            time.sleep(5)
-            counter = counter + 5
-        st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
-        st.video(getVideo(createVideoResponse["id"])["download"])
+
 
 
 # NAVIGATION
