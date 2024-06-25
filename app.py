@@ -378,7 +378,7 @@ def Video():
                             "shortBackgroundContentMatchMode": "freeze",
                             "longBackgroundContentMatchMode": "trim"
                         } },
-                    "scriptText": ""+st.session_state['idea']+"",
+                    "scriptText": st.session_state['idea'],
                     "avatar": "anna_costume1_cameraA",
                     "background": "large_window"
                 }
