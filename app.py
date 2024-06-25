@@ -1,14 +1,8 @@
-import io
-import os
 import time
 import json
 import openai
 import requests
-import pandas as pd
 import streamlit as st
-from openai import OpenAI
-from prompts import get_prompts
-import streamlit.components.v1 as components
 
 
 # API_KEYS
@@ -145,9 +139,50 @@ def remove_bg(image_url):
     else:
         print("Error:", response.status_code, response.text)
 
-import streamlit as st
-import requests
-import time
+def createVideo():
+    url = "https://api.synthesia.io/v2/videos"
+    payload = {
+        "test": "false",
+        "visibility": "public",
+        "title": "My first Synthetic video",
+        "description": "Intro Test",
+        "input": [
+            {
+                "avatarSettings": {
+                    "horizontalAlign": "center",
+                    "scale": 1,
+                    "style": "rectangular",
+                    "seamless": False
+                },
+                "backgroundSettings": { "videoSettings": {
+                        "shortBackgroundContentMatchMode": "freeze",
+                        "longBackgroundContentMatchMode": "trim"
+                    } },
+                "scriptText": st.session_state['idea'],
+                "avatar": "anna_costume1_cameraA",
+                "background": "large_window"
+            }
+        ],
+        "soundtrack": "modern"
+    }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
+    }
+    response = requests.post(url, json=payload, headers=headers)
+    json_data = response.json()
+    video_id = json_data["id"]
+    return json_data
+
+def getVideo(vid):
+    url = "https://api.synthesia.io/v2/videos/" + vid
+    headers = {
+        "accept": "application/json",
+        "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
+    }
+    response = requests.get(url, headers=headers)
+    return response.json()
 
 def Home():
     st.title("Home")
@@ -359,53 +394,7 @@ def Logos():
     
 def Video():
     st.title("Intro Video")
-    def createVideo():
-        url = "https://api.synthesia.io/v2/videos"
-        payload = {
-            "test": "false",
-            "visibility": "public",
-            "title": "My first Synthetic video",
-            "description": "Intro Test",
-            "input": [
-                {
-                    "avatarSettings": {
-                        "horizontalAlign": "center",
-                        "scale": 1,
-                        "style": "rectangular",
-                        "seamless": False
-                    },
-                    "backgroundSettings": { "videoSettings": {
-                            "shortBackgroundContentMatchMode": "freeze",
-                            "longBackgroundContentMatchMode": "trim"
-                        } },
-                    "scriptText": st.session_state['idea'],
-                    "avatar": "anna_costume1_cameraA",
-                    "background": "large_window"
-                }
-            ],
-            "soundtrack": "modern"
-        }
-        headers = {
-            "accept": "application/json",
-            "content-type": "application/json",
-            "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
-        }
-        response = requests.post(url, json=payload, headers=headers)
-        json_data = response.json()
-        video_id = json_data["id"]
-        return json_data
-        # st.write(video_id)
-        # return video_id
 
-    def getVideo(vid):
-        url = "https://api.synthesia.io/v2/videos/" + vid
-        headers = {
-            "accept": "application/json",
-            "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
-        }
-        response = requests.get(url, headers=headers)
-        return response.json()
-    
     with st.form(key='video_form'):
         submit_button = st.form_submit_button(label='Generate',type="primary")
     
@@ -420,9 +409,6 @@ def Video():
             counter = counter + 5
         st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
         st.video(getVideo(createVideoResponse["id"])["download"])
-        # st.write(getVideo(createVideoResponse["id"]))
-        # getVideoResponse = getVideo(createVideo())
-        # st.video(getVideoResponse["download"])
 
 # # PAGE FUNCTIONS 
 
