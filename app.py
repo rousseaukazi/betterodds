@@ -174,7 +174,7 @@ def createVideo(script):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": st.secrets['SYNTHESIA_API_KEY']
+        "Authorization": st.secrets["SYNTHESIA_API_KEY"]
     }
     response = requests.post(url, json=payload, headers=headers)
     json_data = response.json()
