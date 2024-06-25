@@ -394,8 +394,8 @@ def Video():
         json_data = response.json()
         video_id = json_data["id"]
         st.write(json_data)
-        st.write(video_id)
-        return video_id
+        # st.write(video_id)
+        # return video_id
 
     def getVideo(vid):
         url = "https://api.synthesia.io/v2/videos/" + vid
@@ -410,8 +410,9 @@ def Video():
         submit_button = st.form_submit_button(label='Generate',type="primary")
     
     if submit_button:
-        getVideoResponse = getVideo(createVideo())
-        st.video(getVideoResponse["download"])
+        createVideo()
+        # getVideoResponse = getVideo(createVideo())
+        # st.video(getVideoResponse["download"])
 
 # # PAGE FUNCTIONS 
 
