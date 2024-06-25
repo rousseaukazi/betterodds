@@ -3,6 +3,7 @@ import json
 import openai
 import random
 import requests
+import anthropic
 import streamlit as st
 
 
@@ -148,7 +149,7 @@ def createVideo(script):
     payload = {
         "test": "false",
         "visibility": "public",
-        "title": "My first Synthetic video",
+        "title": st.session_state['idea'],
         "description": "Intro Test",
         "input": [
             {
@@ -176,7 +177,6 @@ def createVideo(script):
     }
     response = requests.post(url, json=payload, headers=headers)
     json_data = response.json()
-    video_id = json_data["id"]
     return json_data
 
 def getVideo(vid):
@@ -188,9 +188,23 @@ def getVideo(vid):
     response = requests.get(url, headers=headers)
     return response.json()
 
+def askClaude(prompt):
+    client = anthropic.Anthropic(
+    api_key=st.secrets["CLAUDE_API_KEY"]
+    )
+    
+    message = client.messages.create(
+        model="claude-3-5-sonnet-20240620",
+        max_tokens=1000,
+        temperature=0,
+        messages=prompt
+    )
+    return message.content
+
 ## PAGES 
 def Home():
     st.title("Home")
+    st.write(askClaude("How's it going?"))
     with st.form(key='home_form'):
         idea = st.text_input("Enter your idea:")
         submit_button = st.form_submit_button(label='Submit', type="primary")
@@ -404,7 +418,7 @@ def Video():
         with st.form(key='video_form'):
             if 'video_prompt' not in st.session_state:
                 company_name = ChatGPT(f"Create a pithy company name for {st.session_state['idea']}. Just return the name and nothing else.")
-                st.session_state['video_prompt'] = f'''Create a 2 sentence speech to promote the following [[Company Name]] and [[Business Idea]]. It should just be a speech no other items. It should get the listener excited about the business. 
+                st.session_state['video_prompt'] = f'''Create a less than 25 word speech to promote the following [[Company Name]] and [[Business Idea]]. It should just be a speech no other items. It should get the listener excited about the business. 
                     Company Name: {company_name}
                     BusinessIdea: {st.session_state['idea']}'''
             
@@ -419,7 +433,6 @@ def Video():
             
             createVideoResponse = createVideo(st.session_state['video_script'])
             st.session_state['video_id'] = createVideoResponse["id"]
-            st.write(st.session_state['video_id'])
 
             counter = 0
             latest_iteration = st.empty()
@@ -438,30 +451,10 @@ def Video():
 
         if 'video_url' in st.session_state:
             st.video(st.session_state['video_url'])
-            st.write(st.session_state['video_script'])
     else:
         st.write("Please enter an idea on Home.")
 
 
-# def Video():
-#     st.title("Intro Video")
-
-#     if 'idea' in st.session_state:
-#         with st.form(key='video_form'):
-#             submit_button = st.form_submit_button(label='Generate',type="primary")
-#             if submit_button:
-#                 counter = 0
-#                 createVideoResponse = createVideo()
-#                 st.write(createVideoResponse["id"])
-#                 st.write(getVideo(createVideoResponse["id"])["status"])
-#                 while getVideo(createVideoResponse["id"])["status"] != "complete":
-#                     st.write(str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
-#                     time.sleep(5)
-#                     counter = counter + 5
-#                 st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
-#                 st.video(getVideo(createVideoResponse["id"])["download"])
-#     else:
-#         st.write("Please enter an idea on Home.")
     
 
 
