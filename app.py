@@ -413,9 +413,11 @@ def Video():
         if submit_button:
             st.session_state['video_prompt'] = video_prompt
             st.session_state['video_script'] = ChatGPT(video_prompt)
+            st.write(st.session_state['video_script'])
             
             createVideoResponse = createVideo(st.session_state['video_script'])
             st.session_state['video_id'] = createVideoResponse["id"]
+            st.write(st.session_state['video_id'])
 
             counter = 0
             latest_iteration = st.empty()
