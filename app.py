@@ -378,7 +378,7 @@ def Video():
                             "shortBackgroundContentMatchMode": "freeze",
                             "longBackgroundContentMatchMode": "trim"
                         } },
-                    "scriptText": "Hello, World! This is my first synthetic video, made with the Synthesia API!",
+                    "scriptText": ""+st.session_state['idea']+"",
                     "avatar": "anna_costume1_cameraA",
                     "background": "large_window"
                 }
@@ -395,6 +395,7 @@ def Video():
         video_id = json_data["id"]
         st.write(json_data)
         st.write(video_id)
+        return video_id
 
     def getVideo(vid):
         url = "https://api.synthesia.io/v2/videos/" + vid
@@ -409,7 +410,7 @@ def Video():
         submit_button = st.form_submit_button(label='Generate',type="primary")
     
     if submit_button:
-        getVideoResponse = getVideo("b12cd015-9da1-4ce4-b93a-40b6033a0a23")
+        getVideoResponse = getVideo(createVideo())
         st.video(getVideoResponse["download"])
 
 # # PAGE FUNCTIONS 
