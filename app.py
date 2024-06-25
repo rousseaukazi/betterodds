@@ -197,7 +197,17 @@ def askClaude(prompt):
         model="claude-3-5-sonnet-20240620",
         max_tokens=1000,
         temperature=0,
-        messages=[prompt]
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": prompt
+                        }
+                    ]
+                }
+    ]
     )
     return message.content
 
