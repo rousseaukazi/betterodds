@@ -1,6 +1,7 @@
 import time
 import json
 import openai
+import random
 import requests
 import streamlit as st
 
@@ -162,9 +163,9 @@ def createVideo():
                         "longBackgroundContentMatchMode": "trim"
                     } },
                 "scriptText": st.session_state['idea'],
-                "avatar": "anna_costume1_cameraA",
-                # "background": "large_window"
-                "background": "coffee_shop_01"
+                "avatar": random.choice(avatarArray),
+                "background": "large_window"
+                # "background": "coffee_shop_01"
             }
         ],
         "soundtrack": "modern"
