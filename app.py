@@ -410,7 +410,8 @@ def Video():
         submit_button = st.form_submit_button(label='Generate',type="primary")
     
     if submit_button:
-        createVideo()
+        createVideoResponse = createVideo()
+        st.write(getVideo(createVideoResponse["id"]))
         # getVideoResponse = getVideo(createVideo())
         # st.video(getVideoResponse["download"])
 
