@@ -419,6 +419,7 @@ def Video():
             time.sleep(5)
             counter = counter + 5
         st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
+        st.video(getVideo(createVideoResponse["id"])["download"])
         # st.write(getVideo(createVideoResponse["id"]))
         # getVideoResponse = getVideo(createVideo())
         # st.video(getVideoResponse["download"])
