@@ -465,8 +465,8 @@ def Video():
         st.write("Please enter an idea on Home.")
 
 def Website():
-    # CSS to inject
-    html_code = '''<!DOCTYPE html>
+    websiteIdea = st.session_state['idea']
+    template_code = '''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -841,8 +841,8 @@ def Website():
     </footer>
 </body>
 </html>'''
-
-    st.html(html_code)
+    final_code = askClaude(f"Rewritre this html & css code [[{template_code}]] to be about this business idea [[{websiteIdea}]]. Keep the everything about the format the same. You should only change the text, the emojis to be more relevant, and the prices to fit the text you're putting next to it. Only return the code and nothing else.")
+    st.html(final_code)
         
 
 
