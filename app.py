@@ -186,7 +186,7 @@ def getVideo(vid):
     url = "https://api.synthesia.io/v2/videos/" + vid
     headers = {
         "accept": "application/json",
-        "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
+        "Authorization": st.secrets["SYNTHESIA_API_KEY"]
     }
     response = requests.get(url, headers=headers)
     return response.json()
