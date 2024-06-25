@@ -11,6 +11,7 @@ import streamlit as st
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 client = openai.OpenAI()
 suno_api_key = st.secrets["SUNOAI_API_KEY"]
+synthesia_api_key = st.secrets["SYNTHESIA_API_KEY"]
 
 # Streamlit title
 "# 👌 ✌️ ☝️"
@@ -173,7 +174,7 @@ def createVideo(script):
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "Authorization": "ddea6a53e118514eaaa402be5b5e2ab3"
+        "Authorization": st.secrets['SYNTHESIA_API_KEY']
     }
     response = requests.post(url, json=payload, headers=headers)
     json_data = response.json()
@@ -842,7 +843,7 @@ def Website():
 </body>
 </html>'''
     final_code = ChatGPT(f"Rewrite this html & css code [[{template_code}]] to be about this business idea [[{websiteIdea}]]. Keep the everything about the format the same. You should only change the text, the emojis to be more relevant, and the prices to fit the text you're putting next to it. Only return the code and nothing else.")
-    st.html(final_code)
+    st.html(final_code) 
         
 
 
