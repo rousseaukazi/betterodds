@@ -411,7 +411,10 @@ def Video():
     
     if submit_button:
         createVideoResponse = createVideo()
-        st.write(getVideo("f13c2122-f36a-4c2f-a31e-e106d5eea4d9"))
+        while getVideo(createVideoResponse["id"])["status"] is not "complete":
+            st.write("in progress")
+            time.sleep(1)
+        st.write("complete")
         # st.write(getVideo(createVideoResponse["id"]))
         # getVideoResponse = getVideo(createVideo())
         # st.video(getVideoResponse["download"])
