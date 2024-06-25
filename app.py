@@ -215,10 +215,6 @@ def askClaude(prompt):
 def Home():
     st.title("Home")
     # st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
-    # HTML and CSS code
-    import streamlit as st
-
-# HTML and CSS code
     html_code = """
     <div style="border: 1px solid #ccc; padding: 10px; width: 100%; max-width: 1200px; height: 600px; overflow: auto;">
         <style>
