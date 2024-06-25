@@ -215,7 +215,7 @@ def askClaude(prompt):
 def Home():
     st.title("Home")
     # st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
-    import streamlit as st
+    
 
 # Full HTML content as a string
     html_code = """
