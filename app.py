@@ -404,6 +404,8 @@ def Video():
     if 'idea' in st.session_state:
         with st.form(key='video_form'):
             submit_button = st.form_submit_button(label='Generate',type="primary")
+    else:
+        st.write("Please enter an idea on Home.")
     
     if submit_button:
         counter = 0
