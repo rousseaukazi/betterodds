@@ -414,11 +414,11 @@ def Video():
         createVideoResponse = createVideo()
         st.write(createVideoResponse["id"])
         st.write(getVideo(createVideoResponse["id"])["status"])
-        while getVideo(createVideoResponse["id"])["status"] is not "complete":
+        while getVideo(createVideoResponse["id"])["status"] != "complete":
             st.write(str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
             time.sleep(5)
             counter = counter + 5
-        st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
+        st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
         st.video(getVideo(createVideoResponse["id"])["download"])
         # st.write(getVideo(createVideoResponse["id"]))
         # getVideoResponse = getVideo(createVideo())
