@@ -466,94 +466,383 @@ def Video():
 
 def Website():
     # CSS to inject
-    st.markdown("""
+    html_code = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Online Store</title>
     <style>
-        .stApp {
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-            font-family: Arial, sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        /* (Include the rest of your CSS here) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #f8f8f8;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .hero {
+            background-color: #e3f2fd;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .hero-emoji {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        .featured-product {
+            padding: 40px 0;
+            background-color: #f8f8f8;
+        }
+        .featured-product h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .product-showcase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        .product-image .placeholder-rect {
+            width: 100%;
+            padding-bottom: 100%; /* 1:1 Aspect Ratio */
+            background-color: #bbdefb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+        }
+        .product-image .placeholder-rect::after {
+            content: '🌟';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .product-details {
+            text-align: center;
+        }
+        .product-details h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .product-description {
+            margin-bottom: 15px;
+        }
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .product-grid {
+            padding: 40px 0;
+        }
+        .product-grid h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card .placeholder-rect {
+            width: 100%;
+            padding-bottom: 100%; /* 1:1 Aspect Ratio */
+            background-color: #c8e6c9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            position: relative;
+        }
+        .product-card .placeholder-rect::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .product-card:nth-child(1) .placeholder-rect::after { content: '📱'; }
+        .product-card:nth-child(2) .placeholder-rect::after { content: '💻'; }
+        .product-card:nth-child(3) .placeholder-rect::after { content: '🎧'; }
+        .product-card:nth-child(4) .placeholder-rect::after { content: '⌚'; }
+        .product-card-content {
+            padding: 15px;
+        }
+        .product-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-section {
+            margin-bottom: 20px;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+        }
+
+        @media (min-width: 768px) {
+            .product-showcase {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+            .product-image {
+                margin-right: 40px;
+                margin-bottom: 0;
+            }
+            .product-details {
+                text-align: left;
+                flex: 1;
+            }
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .footer-section {
+                flex: 1;
+                margin-right: 40px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none; /* Hide nav links on mobile */
+            }
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            .featured-product h2, .product-grid h2 {
+                font-size: 24px;
+            }
+            .product-details h3 {
+                font-size: 20px;
+            }
+            .product-price {
+                font-size: 18px;
+            }
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
-    """, unsafe_allow_html=True)
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Your Store</a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    # Header
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col1:
-        st.markdown("<h1 style='color: white;'>FinTech Solutions</h1>", unsafe_allow_html=True)
-    with col2:
-        st.markdown("""
-        <nav style='text-align: center;'>
-            <a href='#' style='color: white; margin: 0 10px;'>Products</a>
-            <a href='#' style='color: white; margin: 0 10px;'>Solutions</a>
-            <a href='#' style='color: white; margin: 0 10px;'>Developers</a>
-            <a href='#' style='color: white; margin: 0 10px;'>Resources</a>
-            <a href='#' style='color: white; margin: 0 10px;'>Pricing</a>
-        </nav>
-        """, unsafe_allow_html=True)
-    with col3:
-        st.button("Contact sales")
-        st.button("Dashboard")
-
-    # Hero section
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <h1 style='font-size: 48px; color: white;'>Financial infrastructure to grow your revenue</h1>
-        <p style='font-size: 18px; color: white;'>Empower your business with our cutting-edge financial technology solutions. Streamline payments, optimize cash flow, and accelerate growth.</p>
-        """, unsafe_allow_html=True)
-        email = st.text_input("Enter your email")
-        st.button("Start now")
-    with col2:
-        st.image("https://via.placeholder.com/300x600.png?text=Mobile+App+Mockup", use_column_width=True)
-        st.image("https://via.placeholder.com/500x300.png?text=Desktop+Dashboard+Mockup", use_column_width=True)
-
-    # Social proof section
-    st.markdown("""
-    <div style='background-color: rgba(255, 255, 255, 0.9); padding: 30px 0; text-align: center;'>
-        <div style='display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;'>
-    """, unsafe_allow_html=True)
-
-    col1, col2, col3, col4, col5 = st.columns(5)
-    with col1:
-        st.image("https://via.placeholder.com/120x60.png?text=Client+1", use_column_width=True)
-    with col2:
-        st.image("https://via.placeholder.com/120x60.png?text=Client+2", use_column_width=True)
-    with col3:
-        st.image("https://via.placeholder.com/120x60.png?text=Client+3", use_column_width=True)
-    with col4:
-        st.image("https://via.placeholder.com/120x60.png?text=Client+4", use_column_width=True)
-    with col5:
-        st.image("https://via.placeholder.com/120x60.png?text=Client+5", use_column_width=True)
-
-    st.markdown("</div></div>", unsafe_allow_html=True)
-
-    # Features section
-    st.markdown("""
-    <div style='background-color: white; padding: 50px 0;'>
-        <h2 style='text-align: center; margin-bottom: 40px;'>A fully integrated suite of payments products</h2>
-        <div style='display: flex; justify-content: space-around; flex-wrap: wrap;'>
-            <div style='flex-basis: calc(33.333% - 40px); text-align: center; margin: 20px;'>
-                <h3>Seamless Transactions</h3>
-                <p>Process payments quickly and securely across multiple channels and currencies.</p>
-            </div>
-            <div style='flex-basis: calc(33.333% - 40px); text-align: center; margin: 20px;'>
-                <h3>Advanced Analytics</h3>
-                <p>Gain valuable insights into your financial data with our powerful analytics tools.</p>
-            </div>
-            <div style='flex-basis: calc(33.333% - 40px); text-align: center; margin: 20px;'>
-                <h3>Robust Security</h3>
-                <p>Protect your business and customers with state-of-the-art security measures.</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-emoji">🛍️</div>
+            <div class="hero-content">
+                <h1>Welcome to Your Online Store</h1>
+                <a href="#" class="cta-button">Shop Now</a>
             </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+    </section>
 
-    # CTA section
-    st.markdown("""
-    <div style='text-align: center; padding: 50px 0; background-color: rgba(255, 255, 255, 0.9);'>
-        <h2 style='margin-bottom: 30px;'>Ready to supercharge your financial operations?</h2>
-    </div>
-    """, unsafe_allow_html=True)
+    <section class="featured-product">
+        <div class="container">
+            <h2>Featured Product</h2>
+            <div class="product-showcase">
+                <div class="product-image">
+                    <div class="placeholder-rect"></div>
+                </div>
+                <div class="product-details">
+                    <h3>Amazing Product</h3>
+                    <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="product-price">$99.99</p>
+                    <a href="#" class="cta-button">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-grid">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="grid">
+                <div class="product-card">
+                    <div class="placeholder-rect"></div>
+                    <div class="product-card-content">
+                        <h3>Product 1</h3>
+                        <p class="price">$49.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="placeholder-rect"></div>
+                    <div class="product-card-content">
+                        <h3>Product 2</h3>
+                        <p class="price">$39.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="placeholder-rect"></div>
+                    <div class="product-card-content">
+                        <h3>Product 3</h3>
+                        <p class="price">$59.99</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="placeholder-rect"></div>
+                    <div class="product-card-content">
+                        <h3>Product 4</h3>
+                        <p class="price">$69.99</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: info@yourstore.com</li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Address: 123 Store St, City, Country</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Your Online Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>'''
+
+    st.html(html_code)
         
 
 
