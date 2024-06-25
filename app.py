@@ -217,21 +217,261 @@ def Home():
     # st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
     # HTML and CSS code
     html_code = """
-    <div style="border: 1px solid #ccc; padding: 10px; width: 100%; max-width: 800px; height: 600px; overflow: auto;">
-        <style>
-            .content {
-                font-family: Arial, sans-serif;
-                line-height: 1.6;
-            }
-        </style>
-        <div class="content">
-            <h1>My Custom HTML/CSS</h1>
-            <p>This is a paragraph within a styled div element.</p>
-            <p>You can add more HTML and CSS as needed.</p>
-            <!-- Add more HTML content here -->
-        </div>
-    </div>
-    """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>FinTech Solutions - Financial Infrastructure to Grow Your Revenue</title>
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: Arial, sans-serif;
+                }
+                body {
+                    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+                    color: #333;
+                    line-height: 1.6;
+                }
+                .container {
+                    width: 90%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+                header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 20px 0;
+                }
+                .logo {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #fff;
+                }
+                nav ul {
+                    display: flex;
+                    list-style-type: none;
+                }
+                nav ul li {
+                    margin-right: 20px;
+                }
+                nav ul li a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+                .cta-buttons {
+                    display: flex;
+                }
+                .cta-button {
+                    padding: 10px 20px;
+                    margin-left: 10px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+                .cta-primary {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+                .cta-secondary {
+                    background-color: white;
+                    color: #333;
+                }
+                .hero {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 50px 0;
+                }
+                .hero-content {
+                    flex: 1;
+                }
+                .hero h1 {
+                    font-size: 48px;
+                    margin-bottom: 20px;
+                    color: #fff;
+                }
+                .hero p {
+                    font-size: 18px;
+                    margin-bottom: 30px;
+                    color: #fff;
+                }
+                .email-form {
+                    display: flex;
+                    margin-bottom: 30px;
+                }
+                .email-form input {
+                    flex: 1;
+                    padding: 10px;
+                    font-size: 16px;
+                    border: none;
+                    border-radius: 5px 0 0 5px;
+                }
+                .email-form button {
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                }
+                .mockups {
+                    flex: 1;
+                    text-align: right;
+                }
+                .mockup-mobile,
+                .mockup-desktop {
+                    max-width: 100%;
+                    height: auto;
+                }
+                .social-proof {
+                    background-color: rgba(255, 255, 255, 0.9);
+                    padding: 30px 0;
+                    text-align: center;
+                }
+                .client-logos {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+                .client-logos img {
+                    max-width: 120px;
+                    height: auto;
+                    margin: 10px;
+                }
+                .features {
+                    background-color: #fff;
+                    padding: 50px 0;
+                }
+                .features h2 {
+                    text-align: center;
+                    margin-bottom: 40px;
+                }
+                .feature-list {
+                    display: flex;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+                }
+                .feature {
+                    flex-basis: calc(33.333% - 40px);
+                    text-align: center;
+                    margin: 20px;
+                }
+                .feature i {
+                    font-size: 48px;
+                    color: #4CAF50;
+                    margin-bottom: 20px;
+                }
+                .cta-section {
+                    text-align: center;
+                    padding: 50px 0;
+                    background-color: rgba(255, 255, 255, 0.9);
+                }
+                .cta-section h2 {
+                    margin-bottom: 30px;
+                }
+                @media (max-width: 768px) {
+                    .hero {
+                        flex-direction: column;
+                    }
+                    .mockups {
+                        margin-top: 30px;
+                    }
+                    .feature {
+                        flex-basis: 100%;
+                    }
+                }
+            </style>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+        </head>
+        <body>
+            <header>
+                <div class="container">
+                    <div class="logo">FinTech Solutions</div>
+                    <nav>
+                        <ul>
+                            <li><a href="#products">Products</a></li>
+                            <li><a href="#solutions">Solutions</a></li>
+                            <li><a href="#developers">Developers</a></li>
+                            <li><a href="#resources">Resources</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                        </ul>
+                    </nav>
+                    <div class="cta-buttons">
+                        <button class="cta-button cta-secondary">Contact sales</button>
+                        <button class="cta-button cta-primary">Dashboard</button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Financial infrastructure to grow your revenue</h1>
+                        <p>Empower your business with our cutting-edge financial technology solutions. Streamline payments, optimize cash flow, and accelerate growth.</p>
+                        <form class="email-form">
+                            <input type="email" placeholder="Enter your email">
+                            <button type="submit">Start now</button>
+                        </form>
+                    </div>
+                    <div class="mockups">
+                        <img src="/api/placeholder/300/600" alt="Mobile app mockup" class="mockup-mobile">
+                        <img src="/api/placeholder/500/300" alt="Desktop dashboard mockup" class="mockup-desktop">
+                    </div>
+                </div>
+            </section>
+
+            <section class="social-proof">
+                <div class="container">
+                    <div class="client-logos">
+                        <img src="/api/placeholder/120/60" alt="Client 1">
+                        <img src="/api/placeholder/120/60" alt="Client 2">
+                        <img src="/api/placeholder/120/60" alt="Client 3">
+                        <img src="/api/placeholder/120/60" alt="Client 4">
+                        <img src="/api/placeholder/120/60" alt="Client 5">
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="container">
+                    <h2>A fully integrated suite of payments products</h2>
+                    <div class="feature-list">
+                        <div class="feature">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>Seamless Transactions</h3>
+                            <p>Process payments quickly and securely across multiple channels and currencies.</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Advanced Analytics</h3>
+                            <p>Gain valuable insights into your financial data with our powerful analytics tools.</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Robust Security</h3>
+                            <p>Protect your business and customers with state-of-the-art security measures.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <div class="container">
+                    <h2>Ready to supercharge your financial operations?</h2>
+                    <button class="cta-button cta-primary">Get started today</button>
+                </div>
+            </section>
+        </body>
+        </html>
+            """
 
     # Display the HTML in Streamlit
     st.markdown(html_code, unsafe_allow_html=True)
