@@ -142,7 +142,7 @@ def remove_bg(image_url):
 
 def createVideo(script):
     avatarArray = ["anna_costume1_cameraA","bridget_costume1_cameraA","isabella_costume1_cameraA","jack_costume2_cameraA","james_costume1_cameraA","jonathan_costume1_cameraA","laura_costume1_cameraA"]
-    backgroundArray = [""]
+    backgroundArray = ["white_studio","white_cafe","luxury_lobby","large_window","white_meeting_room","open_office"]
 
     url = "https://api.synthesia.io/v2/videos"
     payload = {
@@ -164,8 +164,7 @@ def createVideo(script):
                     } },
                 "scriptText": script,
                 "avatar": random.choice(avatarArray),
-                "background": "large_window"
-                # "background": "coffee_shop_01"
+                "background": random.choice(backgroundArray)
             }
         ],
         "soundtrack": "modern"
