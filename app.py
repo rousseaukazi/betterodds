@@ -468,7 +468,7 @@ def Home():
     """
 
     # Display the HTML in Streamlit
-    st.html(html_code, unsafe_allow_html=True)
+    st.html(html_code)
 
 
     with st.form(key='home_form'):
