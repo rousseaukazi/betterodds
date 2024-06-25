@@ -215,6 +215,26 @@ def askClaude(prompt):
 def Home():
     st.title("Home")
     # st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
+    # HTML and CSS code
+    html_code = """
+    <div style="border: 1px solid #ccc; padding: 10px; width: 100%; max-width: 800px; height: 600px; overflow: auto;">
+        <style>
+            .content {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+            }
+        </style>
+        <div class="content">
+            <h1>My Custom HTML/CSS</h1>
+            <p>This is a paragraph within a styled div element.</p>
+            <p>You can add more HTML and CSS as needed.</p>
+            <!-- Add more HTML content here -->
+        </div>
+    </div>
+    """
+
+    # Display the HTML in Streamlit
+    st.markdown(html_code, unsafe_allow_html=True)
     with st.form(key='home_form'):
         idea = st.text_input("Enter your idea:")
         submit_button = st.form_submit_button(label='Submit', type="primary")
