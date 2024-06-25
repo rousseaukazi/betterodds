@@ -842,7 +842,7 @@ def Website():
 </body>
 </html>'''
     final_code = ChatGPT(f"Rewritre this html & css code [[{template_code}]] to be about this business idea [[{websiteIdea}]]. Keep the everything about the format the same. You should only change the text, the emojis to be more relevant, and the prices to fit the text you're putting next to it. Only return the code and nothing else.")
-    st.write(final_code)
+    st.write(final_code,height=250)
         
 
 
