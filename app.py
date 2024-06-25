@@ -209,7 +209,7 @@ def askClaude(prompt):
                 }
     ]
     )
-    return message.content[0]
+    return message.content[0].text
 
 ## PAGES 
 def Home():
