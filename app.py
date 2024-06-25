@@ -140,6 +140,9 @@ def remove_bg(image_url):
         print("Error:", response.status_code, response.text)
 
 def createVideo():
+    avatarArray = ["anna_costume1_cameraA","bridget_costume1_cameraA","isabella_costume1_cameraA","jack_costume2_cameraA","james_costume1_cameraA","jonathan_costume1_cameraA","laura_costume1_cameraA"]
+    backgroundArray = [""]
+
     url = "https://api.synthesia.io/v2/videos"
     payload = {
         "test": "false",
@@ -160,7 +163,8 @@ def createVideo():
                     } },
                 "scriptText": st.session_state['idea'],
                 "avatar": "anna_costume1_cameraA",
-                "background": "large_window"
+                # "background": "large_window"
+                "background": "coffee_shop_01"
             }
         ],
         "soundtrack": "modern"
@@ -184,6 +188,7 @@ def getVideo(vid):
     response = requests.get(url, headers=headers)
     return response.json()
 
+## PAGES 
 def Home():
     st.title("Home")
     with st.form(key='home_form'):
