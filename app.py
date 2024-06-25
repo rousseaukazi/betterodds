@@ -418,28 +418,28 @@ def Video():
             st.session_state['video_script'] = ChatGPT(video_prompt)
             st.write(st.session_state['video_script'])
             
-        #     # createVideoResponse = createVideo(st.session_state['video_script'])
-        #     # st.session_state['video_id'] = createVideoResponse["id"]
-        #     # st.write(st.session_state['video_id'])
+            createVideoResponse = createVideo(st.session_state['video_script'])
+            st.session_state['video_id'] = createVideoResponse["id"]
+            st.write(st.session_state['video_id'])
 
-        #     counter = 0
-        #     latest_iteration = st.empty()
-        #     bar = st.progress(0)
+            counter = 0
+            latest_iteration = st.empty()
+            bar = st.progress(0)
 
-        #     while getVideo(st.session_state['video_id'])["status"] != "complete":
-        #         latest_iteration.text(f'Making magic {counter + 1}')
-        #         bar.progress((counter + 1) % 100)
-        #         time.sleep(5)
-        #         counter += 5
+            while getVideo(st.session_state['video_id'])["status"] != "complete":
+                latest_iteration.text(f'Making magic {counter + 1}')
+                bar.progress((counter + 1) % 100)
+                time.sleep(5)
+                counter += 5
             
-        #     st.session_state['video_url'] = getVideo(st.session_state['video_id'])["download"]
+            st.session_state['video_url'] = getVideo(st.session_state['video_id'])["download"]
 
-        #     latest_iteration.empty()
-        #     bar.empty()
+            latest_iteration.empty()
+            bar.empty()
 
-        # if 'video_url' in st.session_state:
-        #     st.video(st.session_state['video_url'])
-        #     st.write(st.session_state['video_script'])
+        if 'video_url' in st.session_state:
+            st.video(st.session_state['video_url'])
+            st.write(st.session_state['video_script'])
     else:
         st.write("Please enter an idea on Home.")
 
