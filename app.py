@@ -397,26 +397,67 @@ def Logos():
                 remove_bg(st.session_state['logo_response_three'])
     else:
         st.write("Please enter an idea on the Input page.")
-    
+
 def Video():
     st.title("Intro Video")
 
     if 'idea' in st.session_state:
         with st.form(key='video_form'):
-            submit_button = st.form_submit_button(label='Generate',type="primary")
-            if submit_button:
-                counter = 0
-                createVideoResponse = createVideo()
-                st.write(createVideoResponse["id"])
-                st.write(getVideo(createVideoResponse["id"])["status"])
-                while getVideo(createVideoResponse["id"])["status"] != "complete":
-                    st.write(str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
-                    time.sleep(5)
-                    counter = counter + 5
-                st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
-                st.video(getVideo(createVideoResponse["id"])["download"])
+            if 'video_prompt' not in st.session_state:
+                st.session_state['video_prompt'] = "Create a short video script for a marketing video about my business idea. Here's the idea: " + st.session_state['idea'] + ". Just provide the script, no extraneous or confirmation text."
+            
+            video_prompt = st.text_area("Video Script Prompt", st.session_state['video_prompt'])
+            
+            submit_button = st.form_submit_button(label='Generate', type="primary")
+        
+        if submit_button:
+            st.session_state['video_prompt'] = video_prompt
+            st.session_state['video_script'] = ChatGPT(video_prompt)
+            
+            createVideoResponse = createVideo(st.session_state['video_script'])
+            st.session_state['video_id'] = createVideoResponse["id"]
+
+            counter = 0
+            latest_iteration = st.empty()
+            bar = st.progress(0)
+
+            while getVideo(st.session_state['video_id'])["status"] != "complete":
+                latest_iteration.text(f'Making magic {counter + 1}')
+                bar.progress((counter + 1) % 100)
+                time.sleep(5)
+                counter += 5
+            
+            st.session_state['video_url'] = getVideo(st.session_state['video_id'])["download"]
+
+            latest_iteration.empty()
+            bar.empty()
+
+        if 'video_url' in st.session_state:
+            st.video(st.session_state['video_url'])
+            st.write(st.session_state['video_script'])
     else:
         st.write("Please enter an idea on Home.")
+
+
+# def Video():
+#     st.title("Intro Video")
+
+#     if 'idea' in st.session_state:
+#         with st.form(key='video_form'):
+#             submit_button = st.form_submit_button(label='Generate',type="primary")
+#             if submit_button:
+#                 counter = 0
+#                 createVideoResponse = createVideo()
+#                 st.write(createVideoResponse["id"])
+#                 st.write(getVideo(createVideoResponse["id"])["status"])
+#                 while getVideo(createVideoResponse["id"])["status"] != "complete":
+#                     st.write(str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
+#                     time.sleep(5)
+#                     counter = counter + 5
+#                 st.write("🎉 " + str(counter) + " — " + getVideo(createVideoResponse["id"])["status"])
+#                 st.video(getVideo(createVideoResponse["id"])["download"])
+#     else:
+#         st.write("Please enter an idea on Home.")
     
 
 
