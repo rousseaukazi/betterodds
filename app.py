@@ -215,8 +215,11 @@ def askClaude(prompt):
 def Home():
     st.title("Home")
     # st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
+    import streamlit as st
+
+# Full HTML content as a string
     html_code = """
-    <div style="border: 1px solid #ccc; padding: 10px; width: 100%; max-width: 1200px; height: 600px; overflow: auto;">
+    <div style="width: 100%; max-width: 1200px; height: auto; overflow: auto;">
         <style>
             * {
                 margin: 0;
@@ -383,6 +386,7 @@ def Home():
                 }
             }
         </style>
+
         <header>
             <div class="container">
                 <div class="logo">FinTech Solutions</div>
@@ -413,8 +417,8 @@ def Home():
                     </form>
                 </div>
                 <div class="mockups">
-                    <img src="/api/placeholder/300/600" alt="Mobile app mockup" class="mockup-mobile">
-                    <img src="/api/placeholder/500/300" alt="Desktop dashboard mockup" class="mockup-desktop">
+                    <img src="https://via.placeholder.com/300x600" alt="Mobile app mockup" class="mockup-mobile">
+                    <img src="https://via.placeholder.com/500x300" alt="Desktop dashboard mockup" class="mockup-desktop">
                 </div>
             </div>
         </section>
@@ -422,11 +426,11 @@ def Home():
         <section class="social-proof">
             <div class="container">
                 <div class="client-logos">
-                    <img src="/api/placeholder/120/60" alt="Client 1">
-                    <img src="/api/placeholder/120/60" alt="Client 2">
-                    <img src="/api/placeholder/120/60" alt="Client 3">
-                    <img src="/api/placeholder/120/60" alt="Client 4">
-                    <img src="/api/placeholder/120/60" alt="Client 5">
+                    <img src="https://via.placeholder.com/120x60" alt="Client 1">
+                    <img src="https://via.placeholder.com/120x60" alt="Client 2">
+                    <img src="https://via.placeholder.com/120x60" alt="Client 3">
+                    <img src="https://via.placeholder.com/120x60" alt="Client 4">
+                    <img src="https://via.placeholder.com/120x60" alt="Client 5">
                 </div>
             </div>
         </section>
@@ -464,7 +468,8 @@ def Home():
     """
 
     # Display the HTML in Streamlit
-    st.html(html_code)
+    st.markdown(html_code, unsafe_allow_html=True)
+
 
     with st.form(key='home_form'):
         idea = st.text_input("Enter your idea:")
