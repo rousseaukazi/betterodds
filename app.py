@@ -405,7 +405,7 @@ def Video():
         with st.form(key='video_form'):
             if 'video_prompt' not in st.session_state:
                 company_name = ChatGPT(f"Create a pithy company name for {st.session_state['idea']}. Just return the name and nothing else.")
-                st.session_state['video_prompt'] = f'''Create < 15 second speech to promote the following [[Company Name]] and [[Business Idea]]. It should just be a speech no other items. It should get the listener excited about the business. 
+                st.session_state['video_prompt'] = f'''Create < 5 second speech to promote the following [[Company Name]] and [[Business Idea]]. It should just be a speech no other items. It should get the listener excited about the business. 
                     Company Name: {company_name}
                     BusinessIdea: {st.session_state['idea']}'''
             
