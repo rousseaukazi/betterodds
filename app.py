@@ -214,7 +214,7 @@ def askClaude(prompt):
 ## PAGES 
 def Home():
     st.title("Home")
-    st.write(askClaude("How's it going?"))
+    st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
     with st.form(key='home_form'):
         idea = st.text_input("Enter your idea:")
         submit_button = st.form_submit_button(label='Submit', type="primary")
