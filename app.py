@@ -217,7 +217,6 @@ def Home():
     # st.html(askClaude("Please provide html and css for a basic website. Provide just the code and nothing else."))
     # HTML and CSS code
     html_code = """
-        <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
